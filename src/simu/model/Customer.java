@@ -7,12 +7,11 @@ public class Customer {
     private double arrivalTime;
     private double departureTime;
     private final int id;
-    private static int i = 1;
-    private static long sum = 0;
+    private static int nextAvailableId = 1;
+    private static long totalCustomerStayTime = 0;
 
     public Customer() {
-        id = i++;
-
+        id = nextAvailableId++;
         arrivalTime = Clock.getInstance().getClock();
         Trace.out(Trace.Level.INFO, "New Customer nbr " + id + " arrived at " + arrivalTime);
     }
@@ -42,8 +41,8 @@ public class Customer {
         Trace.out(Trace.Level.INFO, "Customer " + id + " arrived: " + arrivalTime);
         Trace.out(Trace.Level.INFO, "Customer " + id + " departed: " + departureTime);
         Trace.out(Trace.Level.INFO, "Customer " + id + " stayed: " + (departureTime - arrivalTime));
-        sum += (departureTime - arrivalTime);
-        double average = sum / id;
-        System.out.println("Average time of customers' stay so far " + average);
+        totalCustomerStayTime += (departureTime - arrivalTime);
+        double averageStayTime = totalCustomerStayTime / id;
+        System.out.println("Average time of customers' stay so far " + averageStayTime);
     }
 }

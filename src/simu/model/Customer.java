@@ -10,6 +10,8 @@ public class Customer {
     private static int nextAvailableId = 1;
     private static double totalCustomerStayTime = 0;
     private boolean isPriority, isOnlineCheckedIn, isNormalCheckedIn, isSelfCheckedIn, isBaggageDropped, isSecurityChecked, isLateFromFlight, hasBaggage;
+
+
     public Customer() {
         this.id = nextAvailableId++;
         this.arrivalTime = Clock.getInstance().getClock();
@@ -116,6 +118,19 @@ public class Customer {
 
     public void setLateFromFlight(boolean lateFromFlight) {
         isLateFromFlight = lateFromFlight;
+    }
+
+    public static double getTotalCustomerStayTime() {
+        return totalCustomerStayTime;
+    }
+
+
+    public boolean isHasBaggage() {
+        return hasBaggage;
+    }
+
+    public void setHasBaggage(boolean hasBaggage) {
+        this.hasBaggage = hasBaggage;
     }
 
     @Override

@@ -10,6 +10,8 @@ public class Customer {
     private static int i = 1;
     private static long sum = 0;
 
+    private boolean flyOutOfEurope;
+
     public Customer() {
         id = i++;
 
@@ -35,6 +37,15 @@ public class Customer {
 
     public int getId() {
         return id;
+    }
+
+
+    public boolean willFlyOutOfEurope() {   //Feature to generate a random boolean with 10% chance of being true.
+        return Math.random() <= 0.9;        //Math.random generates 0 / 1 and compares it to 0.1, which makes it 10%.
+    }
+
+    public void setFlyOutOfEurope(boolean flyOutOfEurope) {
+        this.flyOutOfEurope = flyOutOfEurope;
     }
 
     public void report() {

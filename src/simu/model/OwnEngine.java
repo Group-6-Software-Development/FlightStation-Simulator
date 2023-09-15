@@ -24,7 +24,9 @@ public class OwnEngine extends Engine {
         Customer customer;
         switch ((EventType) e.getType()) {
             case ARR1:
-                servicePoints[0].addToQueue(new Customer());
+                customer = new Customer();
+                customer.setFlyOutOfEurope(customer.willFlyOutOfEurope());
+                servicePoints[0].addToQueue(customer);
                 arrivalProcess.generateNext();
                 break;
             case DEP1:

@@ -8,16 +8,22 @@ public class Customer {
     private double departureTime;
     private final int id;
     private static int nextAvailableId = 1;
-    private static long totalCustomerStayTime = 0;
+    private static double totalCustomerStayTime = 0;
+    private boolean isPriority;
 
     public Customer() {
-        id = nextAvailableId++;
-        arrivalTime = Clock.getInstance().getClock();
+        this.id = nextAvailableId++;
+        this.arrivalTime = Clock.getInstance().getClock();
+        this.isPriority = false; // TODO: needs method to determine if customer is priority
         Trace.out(Trace.Level.INFO, "New Customer nbr " + id + " arrived at " + arrivalTime);
     }
 
     public double getDepartureTime() {
         return departureTime;
+    }
+
+    public boolean isPriority() {
+        return isPriority;
     }
 
     public void setDepartureTime(double departureTime) {
@@ -44,5 +50,18 @@ public class Customer {
         totalCustomerStayTime += (departureTime - arrivalTime);
         double averageStayTime = totalCustomerStayTime / id;
         System.out.println("Average time of customers' stay so far " + averageStayTime);
+    }
+
+
+
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "arrivalTime=" + arrivalTime +
+                ", departureTime=" + departureTime +
+                ", id=" + id +
+                ", isPriority=" + isPriority +
+                '}';
     }
 }

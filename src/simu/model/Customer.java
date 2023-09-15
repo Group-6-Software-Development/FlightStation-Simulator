@@ -117,4 +117,21 @@ public class Customer {
     public void setLateFromFlight(boolean lateFromFlight) {
         isLateFromFlight = lateFromFlight;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "arrivalTime=" + arrivalTime +
+                ", departureTime=" + departureTime +
+                ", id=" + id +
+                ", isPriority=" + isPriority +
+                ", isOnlineCheckedIn=" + isOnlineCheckedIn +
+                ", isNormalCheckedIn=" + isNormalCheckedIn +
+                ", isSelfCheckedIn=" + isSelfCheckedIn +
+                ", isBaggageDropped=" + isBaggageDropped +
+                ", isSecurityChecked=" + isSecurityChecked +
+                ", isLateFromFlight=" + isLateFromFlight +
+                ", hasBaggage=" + hasBaggage +
+                '}';
+    }
 }

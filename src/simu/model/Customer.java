@@ -15,12 +15,12 @@ public class Customer {
         this.id = nextAvailableId++;
         this.arrivalTime = Clock.getInstance().getClock();
         this.hasBaggage = false; // TODO: needs arrival method to determine if customer has baggage
-        this.isPriority = false; // TODO: needs method to determine if customer is priority
+        // this.isPriority = false; // TODO: needs method to determine if customer is priority
         this.isOnlineCheckedIn = false; // TODO: needs method to determine if customer is online checked in
-        this.isSelfCheckedIn = false; // TODO: needs method to determine if customer is self checked in
-        this.isNormalCheckedIn = false; // TODO: needs servicePoint to flip this to true when customer is checked in
-        this.isBaggageDropped = false; // TODO: servicePoint needs to flip this to true when customer has dropped baggage
-        this.isSecurityChecked = false; // TODO: servicePoint needs to flip this to true when customer is security checked
+        // this.isSelfCheckedIn = false; // TODO: needs method to determine if customer is self checked in
+        // this.isNormalCheckedIn = false; // TODO: needs servicePoint to flip this to true when customer is checked in
+        // this.isBaggageDropped = false; // TODO: servicePoint needs to flip this to true when customer has dropped baggage
+        // this.isSecurityChecked = false; // TODO: servicePoint needs to flip this to true when customer is security checked
         this.isLateFromFlight = false; // TODO: needs ServicePoint to determine if customer is late from flight
 
         Trace.out(Trace.Level.INFO, "New Customer nbr " + id + " arrived at " + arrivalTime);

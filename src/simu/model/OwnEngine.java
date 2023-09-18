@@ -1,8 +1,11 @@
 package simu.model;
 
-import simu.framework.*;
 import eduni.distributions.Negexp;
 import eduni.distributions.Normal;
+import simu.framework.ArrivalProcess;
+import simu.framework.Clock;
+import simu.framework.Engine;
+import simu.framework.Event;
 
 public class OwnEngine extends Engine {
     private final ArrivalProcess arrivalProcess;
@@ -36,7 +39,7 @@ public class OwnEngine extends Engine {
                 if (customer.isOnlineCheckedIn()) {
                     break;
                 } else {
-                servicePoints[1].addToQueue(customer);
+                    servicePoints[1].addToQueue(customer);
                 }
                 break;
             case BAGDROP:

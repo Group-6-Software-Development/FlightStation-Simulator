@@ -57,6 +57,7 @@ public class Customer {
     public void setFlyOutOfEurope(boolean flyOutOfEurope) {
         this.flyOutOfEurope = flyOutOfEurope;
     }
+
     public boolean getWillFlyOutOfEurope() {
         return this.flyOutOfEurope;
     }
@@ -81,6 +82,7 @@ public class Customer {
     public boolean isPriority() {
         return isPriority;
     }
+
     public void setPriority(boolean isPriority) {
         this.isPriority = isPriority;
     }
@@ -88,6 +90,7 @@ public class Customer {
     public boolean isOnlineCheckedIn() {
         return isOnlineCheckedIn;
     }
+
     public void setOnlineCheckedIn(boolean isOnlineCheckedIn) {
         this.isOnlineCheckedIn = isOnlineCheckedIn;
     }
@@ -95,6 +98,7 @@ public class Customer {
     public boolean isSelfCheckedIn() {
         return isSelfCheckedIn;
     }
+
     public void setSelfCheckedIn(boolean isSelfCheckedIn) {
         this.isSelfCheckedIn = isSelfCheckedIn;
     }

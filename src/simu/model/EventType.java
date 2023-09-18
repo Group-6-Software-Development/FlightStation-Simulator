@@ -3,5 +3,6 @@ package simu.model;
 import simu.framework.IEventType;
 
 public enum EventType implements IEventType{
-    ARR1, DEP1, DEP2, DEP3
+    // Uudet tyypit en ole kokeillu vaihtaa DEP esimerkiksi Bag dropiksi.
+    ARR1, CHECKIN, BAGDROP, SECURITYCHECK, RANDOMINSPECTION, PASSPORTCHECK, TICKETINSPECTION
 }

@@ -9,12 +9,14 @@ public class OwnEngine extends Engine {
     private final ServicePoint[] servicePoints;
 
     public OwnEngine() {
-        servicePoints = new ServicePoint[3];
-
-        servicePoints[0] = new ServicePoint(new Normal(10, 6), eventlist, EventType.DEP1);
-        servicePoints[1] = new ServicePoint(new Normal(10, 10), eventlist, EventType.DEP2);
-        servicePoints[2] = new ServicePoint(new Normal(5, 3), eventlist, EventType.DEP3);
-
+        servicePoints = new ServicePoint[12];
+        // Uudet Eventit tehdään tässä
+        servicePoints[0] = new ServicePoint(new Normal(10, 6), eventlist, EventType.CHECKIN);
+        servicePoints[1] = new ServicePoint(new Normal(10, 10), eventlist, EventType.BAGDROP);
+        servicePoints[2] = new ServicePoint(new Normal(15, 6), eventlist, EventType.SECURITYCHECK);
+        servicePoints[3] = new ServicePoint(new Normal(15, 3), eventlist, EventType.RANDOMINSPECTION);
+        servicePoints[4] = new ServicePoint(new Normal(15, 10), eventlist, EventType.PASSPORTCHECK);
+        servicePoints[5] = new ServicePoint(new Normal(15, 5), eventlist, EventType.TICKETINSPECTION);
         arrivalProcess = new ArrivalProcess(new Negexp(15, 5), eventlist, EventType.ARR1);
 
     }
@@ -29,18 +31,39 @@ public class OwnEngine extends Engine {
                 servicePoints[0].addToQueue(customer);
                 arrivalProcess.generateNext();
                 break;
-            case DEP1:
+            case CHECKIN:
                 customer = (Customer) servicePoints[0].removeFromQueue();
+                if ((customer.isOnlineCheckIn() = true)) {
+                    break;
+                } else {
                 servicePoints[1].addToQueue(customer);
+                }
                 break;
-            case DEP2:
+            case BAGDROP:
                 customer = (Customer) servicePoints[1].removeFromQueue();
                 servicePoints[2].addToQueue(customer);
                 break;
-            case DEP3:
-                customer = (Customer) servicePoints[2].removeFromQueue();
+            case SECURITYCHECK:
+                customer = (Customer) servicePoints[0].removeFromQueue();
+                servicePoints[3].addToQueue(customer);
+                break;
+            case RANDOMINSPECTION:
+                customer = (Customer) servicePoints[1].removeFromQueue();
+                servicePoints[4].addToQueue(customer);
+                break;
+            case PASSPORTCHECK:
+                customer = (Customer) servicePoints[0].removeFromQueue();
+                if ((customer.setFlyOutOfEurope() = true)) {
+                    servicePoints[5].addToQueue(customer);
+                } else {
+                    break;
+                }
+                break;
+            case TICKETINSPECTION:
+                customer = (Customer) servicePoints[1].removeFromQueue();
                 customer.setDepartureTime(Clock.getInstance().getClock());
                 customer.report();
+                break;
         }
     }
 

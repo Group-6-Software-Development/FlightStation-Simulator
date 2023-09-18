@@ -11,7 +11,6 @@ public class Customer {
     private static double totalCustomerStayTime = 0;
     private boolean isPriority, isOnlineCheckedIn, isNormalCheckedIn, isSelfCheckedIn, isBaggageDropped, isSecurityChecked, isLateFromFlight, hasBaggage;
 
-
     public Customer() {
         this.id = nextAvailableId++;
         this.arrivalTime = Clock.getInstance().getClock();
@@ -30,7 +29,6 @@ public class Customer {
     public double getDepartureTime() {
         return departureTime;
     }
-
 
     public void setDepartureTime(double departureTime) {
         this.departureTime = departureTime;
@@ -60,7 +58,6 @@ public class Customer {
     public double calculateStayTime() {
         return departureTime - arrivalTime;
     }
-
 
     public double calculateAverageStayTime() {
         return totalCustomerStayTime / id;
@@ -123,7 +120,6 @@ public class Customer {
     public static double getTotalCustomerStayTime() {
         return totalCustomerStayTime;
     }
-
 
     public boolean isHasBaggage() {
         return hasBaggage;

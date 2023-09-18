@@ -30,10 +30,10 @@ public class OwnEngine extends Engine {
                 arrivalProcess.generateNext();
                 break;
             case CHECKIN:
+                customer = (Customer) servicePoints[0].removeFromQueue();
                 if ((customer.hasOnlineCheckIn())) {
                     break;
                 } else {
-                customer = (Customer) servicePoints[0].removeFromQueue();
                 servicePoints[1].addToQueue(customer);
                 }
                 break;
@@ -50,8 +50,8 @@ public class OwnEngine extends Engine {
                 servicePoints[4].addToQueue(customer);
                 break;
             case PASSPORTCHECK:
-                if ((customer.hasPassportCheckIn())) {
-                    customer = (Customer) servicePoints[0].removeFromQueue();
+                customer = (Customer) servicePoints[0].removeFromQueue();
+                if ((customer.setFlyOutOfEurope() = true)) {
                     servicePoints[5].addToQueue(customer);
                 } else {
                     break;

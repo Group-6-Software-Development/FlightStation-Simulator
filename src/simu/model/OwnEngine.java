@@ -29,14 +29,12 @@ public class OwnEngine extends Engine {
         Customer customer;
         switch ((EventType) e.getType()) {
             case ARR1:
-                customer = new Customer();
-                customer.setFlyOutOfEurope(customer.willFlyOutOfEurope());
-                servicePoints[0].addToQueue(customer);
+                servicePoints[0].addToQueue(new Customer());
                 arrivalProcess.generateNext();
                 break;
             case CHECKIN:
                 customer = (Customer) servicePoints[0].removeFromQueue();
-                if (customer.isOnlineCheckedIn()) {
+                if ((customer.isOnlineCheckIn() = true)) {
                     break;
                 } else {
                     servicePoints[1].addToQueue(customer);
@@ -56,7 +54,7 @@ public class OwnEngine extends Engine {
                 break;
             case PASSPORTCHECK:
                 customer = (Customer) servicePoints[0].removeFromQueue();
-                if (customer.getWillFlyOutOfEurope()) {
+                if ((customer.setFlyOutOfEurope() = true)) {
                     servicePoints[5].addToQueue(customer);
                 } else {
                     break;

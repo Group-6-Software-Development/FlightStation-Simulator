@@ -36,12 +36,19 @@ public class OwnEngine extends Engine {
                 arrivalProcess.generateNext();
                 break;
             case DEP1:
+                if ((customer.hasOnlineCheckIn())) {
+                    break;
+                } else {
                 customer = (Customer) servicePoints[0].removeFromQueue();
                 servicePoints[1].addToQueue(customer);
+                }
                 break;
             case DEP2:
-                customer = (Customer) servicePoints[1].removeFromQueue();
-                servicePoints[2].addToQueue(customer);
+                if ((customer.hasBaggage())) {
+                    customer = (Customer) servicePoints[1].removeFromQueue();
+                    servicePoints[2].addToQueue(customer);
+                } else {
+                    break;
                 break;
             case DEP3:
                 customer = (Customer) servicePoints[0].removeFromQueue();

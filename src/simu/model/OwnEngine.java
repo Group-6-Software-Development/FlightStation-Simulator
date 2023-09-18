@@ -1,15 +1,18 @@
 package simu.model;
 
-import simu.framework.*;
 import eduni.distributions.Negexp;
 import eduni.distributions.Normal;
+import simu.framework.ArrivalProcess;
+import simu.framework.Clock;
+import simu.framework.Engine;
+import simu.framework.Event;
 
 public class OwnEngine extends Engine {
     private final ArrivalProcess arrivalProcess;
     private final ServicePoint[] servicePoints;
 
     public OwnEngine() {
-        servicePoints = new ServicePoint[12];
+        servicePoints = new ServicePoint[6];
         // Uudet Eventit tehdään tässä
         servicePoints[0] = new ServicePoint(new Normal(10, 6), eventlist, EventType.CHECKIN);
         servicePoints[1] = new ServicePoint(new Normal(10, 10), eventlist, EventType.BAGDROP);
@@ -17,8 +20,8 @@ public class OwnEngine extends Engine {
         servicePoints[3] = new ServicePoint(new Normal(15, 3), eventlist, EventType.RANDOMINSPECTION);
         servicePoints[4] = new ServicePoint(new Normal(15, 10), eventlist, EventType.PASSPORTCHECK);
         servicePoints[5] = new ServicePoint(new Normal(15, 5), eventlist, EventType.TICKETINSPECTION);
-        arrivalProcess = new ArrivalProcess(new Negexp(15, 5), eventlist, EventType.ARR1);
 
+        arrivalProcess = new ArrivalProcess(new Negexp(15, 5), eventlist, EventType.ARR1);
     }
 
     @Override
@@ -33,11 +36,7 @@ public class OwnEngine extends Engine {
                 break;
             case CHECKIN:
                 customer = (Customer) servicePoints[0].removeFromQueue();
-                if (customer.isOnlineCheckedIn()) {
-                    break;
-                } else {
                 servicePoints[1].addToQueue(customer);
-                }
                 break;
             case BAGDROP:
                 customer = (Customer) servicePoints[1].removeFromQueue();
@@ -53,11 +52,7 @@ public class OwnEngine extends Engine {
                 break;
             case PASSPORTCHECK:
                 customer = (Customer) servicePoints[0].removeFromQueue();
-                if (customer.getWillFlyOutOfEurope()) {
-                    servicePoints[5].addToQueue(customer);
-                } else {
-                    break;
-                }
+                servicePoints[5].addToQueue(customer);
                 break;
             case TICKETINSPECTION:
                 customer = (Customer) servicePoints[1].removeFromQueue();

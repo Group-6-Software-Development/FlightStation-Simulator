@@ -57,6 +57,9 @@ public class Customer {
     public void setFlyOutOfEurope(boolean flyOutOfEurope) {
         this.flyOutOfEurope = flyOutOfEurope;
     }
+    public boolean getWillFlyOutOfEurope() {
+        return this.flyOutOfEurope;
+    }
 
     public void report() {
         Trace.out(Trace.Level.INFO, "\nCustomer " + id + " ready! ");

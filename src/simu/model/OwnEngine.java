@@ -33,7 +33,7 @@ public class OwnEngine extends Engine {
                 break;
             case CHECKIN:
                 customer = (Customer) servicePoints[0].removeFromQueue();
-                if ((customer.isOnlineCheckIn() = true)) {
+                if (customer.isOnlineCheckedIn()) {
                     break;
                 } else {
                 servicePoints[1].addToQueue(customer);
@@ -53,7 +53,7 @@ public class OwnEngine extends Engine {
                 break;
             case PASSPORTCHECK:
                 customer = (Customer) servicePoints[0].removeFromQueue();
-                if ((customer.setFlyOutOfEurope() = true)) {
+                if (customer.getWillFlyOutOfEurope()) {
                     servicePoints[5].addToQueue(customer);
                 } else {
                     break;

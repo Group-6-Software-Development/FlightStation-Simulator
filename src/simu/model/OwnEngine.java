@@ -31,7 +31,7 @@ public class OwnEngine extends Engine {
                 break;
             case CHECKIN:
                 customer = (Customer) servicePoints[0].removeFromQueue();
-                if ((customer.hasOnlineCheckIn())) {
+                if ((customer.isOnlineCheckIn() = true)) {
                     break;
                 } else {
                 servicePoints[1].addToQueue(customer);

@@ -9,12 +9,20 @@ public class OwnEngine extends Engine {
     private final ServicePoint[] servicePoints;
 
     public OwnEngine() {
-        servicePoints = new ServicePoint[3];
-
+        servicePoints = new ServicePoint[12];
+        // Uudet Eventit tehdään tässä
         servicePoints[0] = new ServicePoint(new Normal(10, 6), eventlist, EventType.DEP1);
         servicePoints[1] = new ServicePoint(new Normal(10, 10), eventlist, EventType.DEP2);
         servicePoints[2] = new ServicePoint(new Normal(5, 3), eventlist, EventType.DEP3);
-
+        servicePoints[3] = new ServicePoint(new Normal(5, 3), eventlist, EventType.DEP4);
+        servicePoints[4] = new ServicePoint(new Normal(5, 3), eventlist, EventType.DEP5);
+        servicePoints[5] = new ServicePoint(new Normal(5, 3), eventlist, EventType.DEP6);
+        servicePoints[6] = new ServicePoint(new Normal(5, 3), eventlist, EventType.DEP7);
+        servicePoints[7] = new ServicePoint(new Normal(5, 3), eventlist, EventType.DEP8);
+        servicePoints[8] = new ServicePoint(new Normal(5, 3), eventlist, EventType.DEP9);
+        servicePoints[9] = new ServicePoint(new Normal(5, 3), eventlist, EventType.DEP10);
+        servicePoints[10] = new ServicePoint(new Normal(5, 3), eventlist, EventType.DEP11);
+        servicePoints[11] = new ServicePoint(new Normal(5, 3), eventlist, EventType.DEP12);
         arrivalProcess = new ArrivalProcess(new Negexp(15, 5), eventlist, EventType.ARR1);
 
     }

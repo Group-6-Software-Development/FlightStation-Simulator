@@ -1,12 +1,17 @@
 package simu.framework;
 
-public abstract class Engine {
+import controller.IControllerForM;
+
+public abstract class Engine extends Thread implements IEngine {
     private double simulationTime = 0;
+    private long delay = 0;
     private final Clock clock;
 
     protected EventList eventlist;
+    protected IControllerForM controller;
 
-    public Engine() {
+    public Engine(IControllerForM controller) {
+        this.controller = controller;
         clock = Clock.getInstance();
         eventlist = new EventList();
     }
@@ -15,9 +20,20 @@ public abstract class Engine {
         simulationTime = time;
     }
 
+    @Override
+    public void setDelay(long delay) {
+        this.delay = delay;
+    }
+
+    @Override
+    public long getDelay() {
+        return delay;
+    }
+
     public void run() {
         init();
         while (simulate()) {
+            delay();
             clock.setTime(currentTime());
             runBEvents();
             tryCEvents();
@@ -37,6 +53,15 @@ public abstract class Engine {
 
     private boolean simulate() {
         return clock.getClock() < simulationTime;
+    }
+
+    private void delay() {
+        Trace.out(Trace.Level.INFO, "Delay " + delay);
+        try {
+            sleep(delay);
+        } catch (InterruptedException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     protected abstract void runEvent(Event e);

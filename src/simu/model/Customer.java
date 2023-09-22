@@ -75,7 +75,6 @@ public class Customer {
 
     // Boolean getters and setters
 
-
     public boolean isOnlineCheckedIn() {
         return isOnlineCheckedIn;
     }

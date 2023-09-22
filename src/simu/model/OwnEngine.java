@@ -1,5 +1,6 @@
 package simu.model;
 
+import controller.IControllerForM;
 import eduni.distributions.Negexp;
 import eduni.distributions.Normal;
 import simu.framework.ArrivalProcess;
@@ -11,9 +12,11 @@ public class OwnEngine extends Engine {
     private final ArrivalProcess arrivalProcess;
     private final ServicePoint[] servicePoints;
 
-    public OwnEngine() {
+    public OwnEngine(IControllerForM controller) {
+
+        super(controller);
+
         servicePoints = new ServicePoint[6];
-        // Uudet Eventit tehdään tässä
         servicePoints[0] = new ServicePoint(new Normal(10, 6), eventlist, EventType.CHECKIN);
         servicePoints[1] = new ServicePoint(new Normal(10, 10), eventlist, EventType.BAGDROP);
         servicePoints[2] = new ServicePoint(new Normal(15, 6), eventlist, EventType.SECURITYCHECK);
@@ -30,32 +33,33 @@ public class OwnEngine extends Engine {
         switch ((EventType) e.getType()) {
             case ARR1:
                 customer = new Customer();
-                customer.setFlyOutOfEurope(customer.willFlyOutOfEurope());
+                // customer.setFlyOutOfEurope(customer.willFlyOutOfEurope());
                 servicePoints[0].addToQueue(customer);
                 arrivalProcess.generateNext();
+                controller.visualizeCustomer();
                 break;
             case CHECKIN:
-                customer = (Customer) servicePoints[0].removeFromQueue();
+                customer = servicePoints[0].removeFromQueue();
                 servicePoints[1].addToQueue(customer);
                 break;
             case BAGDROP:
-                customer = (Customer) servicePoints[1].removeFromQueue();
+                customer = servicePoints[1].removeFromQueue();
                 servicePoints[2].addToQueue(customer);
                 break;
             case SECURITYCHECK:
-                customer = (Customer) servicePoints[0].removeFromQueue();
+                customer = servicePoints[0].removeFromQueue();
                 servicePoints[3].addToQueue(customer);
                 break;
             case RANDOMINSPECTION:
-                customer = (Customer) servicePoints[1].removeFromQueue();
+                customer = servicePoints[1].removeFromQueue();
                 servicePoints[4].addToQueue(customer);
                 break;
             case PASSPORTCHECK:
-                customer = (Customer) servicePoints[0].removeFromQueue();
+                customer = servicePoints[0].removeFromQueue();
                 servicePoints[5].addToQueue(customer);
                 break;
             case TICKETINSPECTION:
-                customer = (Customer) servicePoints[1].removeFromQueue();
+                customer = servicePoints[1].removeFromQueue();
                 customer.setDepartureTime(Clock.getInstance().getClock());
                 customer.report();
                 break;
@@ -80,5 +84,7 @@ public class OwnEngine extends Engine {
     protected void results() {
         System.out.println("Simulation end at " + Clock.getInstance().getClock());
         System.out.println("Results ... still missing");
+
+        controller.showEndTime(Clock.getInstance().getClock());
     }
 }

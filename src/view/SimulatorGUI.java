@@ -68,12 +68,14 @@ public class SimulatorGUI extends Application implements ISimulatorUI {
             time = new TextField("Enter time");
             time.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
             time.setPrefWidth(150);
+            time.setOnMouseClicked(event -> time.setText(""));
 
             Label delayLabel = new Label("Delay:");
             delayLabel.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
             delay = new TextField("Enter delay");
             delay.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
             delay.setPrefWidth(150);
+            delay.setOnMouseClicked(event -> delay.setText(""));
 
             Label resultLabel = new Label("Total time:");
             resultLabel.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
@@ -100,7 +102,7 @@ public class SimulatorGUI extends Application implements ISimulatorUI {
             grid.add(speedUpButton, 0, 4);
             grid.add(slowDownButton, 1, 4);
 
-            display = new Visualization(400, 200);
+            display = new Visualization(800, 400);
 
             hBox.getChildren().addAll(grid, (Canvas) display);
 

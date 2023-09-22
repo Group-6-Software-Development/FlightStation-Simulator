@@ -16,13 +16,13 @@ public class OwnEngine extends Engine {
 
         super(controller);
 
-        servicePoints = new ServicePoint[6];
+        servicePoints = new ServicePoint[5];
         servicePoints[0] = new ServicePoint(new Normal(10, 6), eventlist, EventType.CHECKIN);
         servicePoints[1] = new ServicePoint(new Normal(10, 10), eventlist, EventType.BAGDROP);
         servicePoints[2] = new ServicePoint(new Normal(15, 6), eventlist, EventType.SECURITYCHECK);
-        servicePoints[3] = new ServicePoint(new Normal(15, 3), eventlist, EventType.RANDOMINSPECTION);
-        servicePoints[4] = new ServicePoint(new Normal(15, 10), eventlist, EventType.PASSPORTCHECK);
-        servicePoints[5] = new ServicePoint(new Normal(15, 5), eventlist, EventType.TICKETINSPECTION);
+        //servicePoints[3] = new ServicePoint(new Normal(15, 3), eventlist, EventType.RANDOMINSPECTION);
+        servicePoints[3] = new ServicePoint(new Normal(15, 10), eventlist, EventType.PASSPORTCHECK);
+        servicePoints[4] = new ServicePoint(new Normal(15, 5), eventlist, EventType.TICKETINSPECTION);
 
         arrivalProcess = new ArrivalProcess(new Negexp(15, 5), eventlist, EventType.ARR1);
     }
@@ -47,19 +47,21 @@ public class OwnEngine extends Engine {
                 servicePoints[2].addToQueue(customer);
                 break;
             case SECURITYCHECK:
-                customer = servicePoints[0].removeFromQueue();
+                customer = servicePoints[2].removeFromQueue();
                 servicePoints[3].addToQueue(customer);
                 break;
+                /*
             case RANDOMINSPECTION:
                 customer = servicePoints[1].removeFromQueue();
                 servicePoints[4].addToQueue(customer);
                 break;
+                */
             case PASSPORTCHECK:
-                customer = servicePoints[0].removeFromQueue();
-                servicePoints[5].addToQueue(customer);
+                customer = servicePoints[3].removeFromQueue();
+                servicePoints[4].addToQueue(customer);
                 break;
             case TICKETINSPECTION:
-                customer = servicePoints[1].removeFromQueue();
+                customer = servicePoints[4].removeFromQueue();
                 customer.setDepartureTime(Clock.getInstance().getClock());
                 customer.report();
                 break;

@@ -12,6 +12,8 @@ public class OwnEngine extends Engine {
     private final ArrivalProcess arrivalProcess;
     private final ServicePoint[] servicePoints;
 
+    private int C = 0;      //Counter for customer amount
+
     public OwnEngine(IControllerForM controller) {
 
         super(controller);
@@ -64,6 +66,7 @@ public class OwnEngine extends Engine {
                 customer = servicePoints[4].removeFromQueue();
                 customer.setDepartureTime(Clock.getInstance().getClock());
                 customer.report();
+                C++;        //add +1 counter for customer
                 break;
         }
     }
@@ -86,6 +89,7 @@ public class OwnEngine extends Engine {
     protected void results() {
         System.out.println("Simulation end at " + Clock.getInstance().getClock());
         System.out.println("Results ... still missing");
+        System.out.println("Total amount of customers that passed into the plane: " + C);
 
         controller.showEndTime(Clock.getInstance().getClock());
     }

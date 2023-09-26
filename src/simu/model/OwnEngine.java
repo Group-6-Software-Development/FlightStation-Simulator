@@ -91,6 +91,9 @@ public class OwnEngine extends Engine {
         System.out.println("Results ... still missing");
         System.out.println("Total amount of customers that passed into the plane: " + C);
 
+        for (ServicePoint servicePoint : servicePoints) {
+            System.out.printf("Utilization of %s is %.2f%%\n", servicePoint, servicePoint.getUtilization());
+        }
         controller.showEndTime(Clock.getInstance().getClock());
     }
 }

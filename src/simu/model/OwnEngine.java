@@ -86,7 +86,9 @@ public class OwnEngine extends Engine {
     protected void results() {
         System.out.println("Simulation end at " + Clock.getInstance().getClock());
         System.out.println("Results ... still missing");
-
+        for (ServicePoint servicePoint : servicePoints) {
+            System.out.printf("Utilization of %s is %.2f%%\n", servicePoint, servicePoint.getUtilization());
+        }
         controller.showEndTime(Clock.getInstance().getClock());
     }
 }

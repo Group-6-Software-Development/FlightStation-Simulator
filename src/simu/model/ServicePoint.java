@@ -12,6 +12,7 @@ public class ServicePoint {
     private final ContinuousGenerator generator;
     private final EventList eventList;
     private final EventType scheduledEventType;
+    private double totalBusyTime = 0.0, lastBusyStartTime = 0.0;
 
     private boolean reserved = false;
 
@@ -33,7 +34,14 @@ public class ServicePoint {
     public void startService() {
         reserved = true;
         double serviceTime = generator.sample();
+        totalBusyTime += (Clock.getInstance().getClock() - lastBusyStartTime);
         eventList.add(new Event(scheduledEventType, Clock.getInstance().getClock() + serviceTime));
+        lastBusyStartTime = Clock.getInstance().getClock();
+    }
+
+    public double getUtilization() {
+        double totalTime = Clock.getInstance().getClock();
+        return (totalBusyTime / totalTime) * 100;
     }
 
     public boolean isBusy() {

@@ -60,6 +60,7 @@ public class OwnEngine extends Engine {
                 customer = servicePoints[4].removeFromQueue();
                 customer.setDepartureTime(Clock.getInstance().getClock());
                 customer.report();
+                controller.visualizeCustomerLeaves();
                 C++;        //add +1 counter for customer
                 break;
         }

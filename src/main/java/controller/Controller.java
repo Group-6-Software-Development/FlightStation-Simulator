@@ -44,6 +44,11 @@ public class Controller implements IControllerForM, IControllerForV{
     }
 
     @Override
+    public void visualizeCustomerLeaves() {
+        Platform.runLater(() -> ui.getVisualization().customerLeaves());
+    }
+
+    @Override
     public int getCustomerCount() {
         return engine.getCustomerCount();
     }

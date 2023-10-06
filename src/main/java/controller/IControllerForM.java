@@ -4,4 +4,6 @@ public interface IControllerForM {
     void showEndTime(double time);
 
     void visualizeCustomer();
+
+    void visualizeCustomerLeaves();
 }

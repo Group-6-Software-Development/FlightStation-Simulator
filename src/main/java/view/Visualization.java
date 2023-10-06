@@ -9,7 +9,10 @@ public class Visualization implements IVisualization {
     private final Canvas canvas;
 
     double i = 0;
-    double j = 10;
+    double j = 0;
+
+    double x = 0;
+    double y = 0;
 
     public Visualization(Canvas canvas) {
         this.canvas = canvas;
@@ -28,5 +31,13 @@ public class Visualization implements IVisualization {
 
         i = (i + 10) % canvas.getWidth();
         if (i == 0) j += 10;
+    }
+
+    public void customerLeaves() {
+        gc.setFill(Color.GREEN);
+        gc.fillOval(x, y, 10, 10);
+
+        x = (x + 10) % canvas.getWidth();
+        if (x == 0) y += 10;
     }
 }

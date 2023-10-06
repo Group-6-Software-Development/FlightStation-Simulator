@@ -71,4 +71,6 @@ public abstract class Engine extends Thread implements IEngine {
     protected abstract void init();
 
     protected abstract void results();
+
+    public abstract int getCustomerCount();
 }

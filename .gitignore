@@ -32,3 +32,4 @@ bin/
 /*.csv
 /*.ser
 /.idea/*
+/target/

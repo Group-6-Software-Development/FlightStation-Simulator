@@ -42,4 +42,9 @@ public class Controller implements IControllerForM, IControllerForV{
     public void visualizeCustomer() {
         Platform.runLater(() -> ui.getVisualization().newCustomer());
     }
+
+    @Override
+    public int getCustomerCount() {
+        return engine.getCustomerCount();
+    }
 }

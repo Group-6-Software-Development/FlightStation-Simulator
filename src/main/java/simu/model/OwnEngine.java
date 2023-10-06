@@ -22,7 +22,6 @@ public class OwnEngine extends Engine {
         servicePoints[0] = new ServicePoint(new Normal(10, 6), eventlist, EventType.CHECKIN);
         servicePoints[1] = new ServicePoint(new Normal(10, 10), eventlist, EventType.BAGDROP);
         servicePoints[2] = new ServicePoint(new Normal(15, 6), eventlist, EventType.SECURITYCHECK);
-        //servicePoints[3] = new ServicePoint(new Normal(15, 3), eventlist, EventType.RANDOMINSPECTION);
         servicePoints[3] = new ServicePoint(new Normal(15, 10), eventlist, EventType.PASSPORTCHECK);
         servicePoints[4] = new ServicePoint(new Normal(15, 5), eventlist, EventType.TICKETINSPECTION);
 
@@ -52,12 +51,6 @@ public class OwnEngine extends Engine {
                 customer = servicePoints[2].removeFromQueue();
                 servicePoints[3].addToQueue(customer);
                 break;
-                /*
-            case RANDOMINSPECTION:
-                customer = servicePoints[1].removeFromQueue();
-                servicePoints[4].addToQueue(customer);
-                break;
-                */
             case PASSPORTCHECK:
                 customer = servicePoints[3].removeFromQueue();
                 servicePoints[4].addToQueue(customer);
@@ -95,5 +88,10 @@ public class OwnEngine extends Engine {
             System.out.printf("Utilization of %s is %.2f%%\n", servicePoint, servicePoint.getUtilization());
         }
         controller.showEndTime(Clock.getInstance().getClock());
+    }
+
+    @Override
+    public int getCustomerCount() {
+        return C;
     }
 }

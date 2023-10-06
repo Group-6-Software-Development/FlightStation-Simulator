@@ -6,4 +6,6 @@ public interface IControllerForV {
         void speedUp();
 
         void slowDown();
+
+        int getCustomerCount();
 }

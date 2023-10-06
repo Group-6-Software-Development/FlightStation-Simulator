@@ -11,7 +11,7 @@ public enum EventType implements IEventType{
      * @param type EventType which name is wanted as a string
      * @return String of the EventTypes name
      */
-    public static String eventName(EventType type) {
+    public static String getEventName(EventType type) {
         return switch (type) {
             case ARR1 -> "ARRIVAL";
             case CHECKIN -> "CHECK-IN";

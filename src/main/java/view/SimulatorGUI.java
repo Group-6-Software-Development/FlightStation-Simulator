@@ -3,6 +3,7 @@ package view;
 import controller.Controller;
 import controller.IControllerForV;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,13 +20,13 @@ import java.text.DecimalFormat;
 
 public class SimulatorGUI extends Application implements ISimulatorUI {
     @FXML
+    private Canvas customerCanvas;
+    @FXML
     private Button speedUpButton;
     @FXML
     private Button slowDownButton;
     @FXML
     private Label customerCount;
-    @FXML
-    private Canvas customerDisplay;
     @FXML
     private TextField time;
     @FXML
@@ -54,26 +55,30 @@ public class SimulatorGUI extends Application implements ISimulatorUI {
         speedUpButton = (Button) loader.getNamespace().get("speedUpButton");
         slowDownButton = (Button) loader.getNamespace().get("slowDownButton");
         customerCount = (Label) loader.getNamespace().get("customerCount");
-        customerDisplay = (Canvas) loader.getNamespace().get("customerDisplay");
         time = (TextField) loader.getNamespace().get("time");
         delay = (TextField) loader.getNamespace().get("delay");
         result = (Label) loader.getNamespace().get("result");
+        customerCanvas = (Canvas) loader.getNamespace().get("customerCanvas");
 
         startButton.setOnAction(event -> {
             controller.startSimulation();
             startButton.setDisable(true);
         });
 
+        speedUpButton.setOnAction(e -> controller.speedUp());
         slowDownButton.setOnAction(e -> controller.slowDown());
 
-        speedUpButton.setOnAction(e -> controller.speedUp());
-
-        display = new Visualization((int) customerDisplay.getWidth(), (int) customerDisplay.getHeight());
+        display = new Visualization(customerCanvas);
 
         stage.setTitle("Simulator");
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         stage.show();
+
+        stage.setOnCloseRequest(e -> {
+            Platform.exit();
+            System.exit(0);
+        });
     }
 
     @Override

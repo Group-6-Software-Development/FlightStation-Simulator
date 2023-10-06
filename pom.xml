@@ -7,7 +7,6 @@
     <groupId>groupId</groupId>
     <artifactId>FlightStation</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -30,7 +29,6 @@
             <artifactId>javafx-graphics</artifactId>
             <version>22-ea+11</version>
         </dependency>
-
 
         <!-- https://mvnrepository.com/artifact/org.openjfx/javafx-fxml -->
         <dependency>
@@ -58,7 +56,6 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.4.11</version>
-            <scope>test</scope>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/jakarta.persistence/jakarta.persistence-api -->
@@ -74,7 +71,13 @@
             <artifactId>hibernate-core</artifactId>
             <version>6.3.1.Final</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.10.0</version>
+        </dependency>
+
     </dependencies>
-
-
 </project>

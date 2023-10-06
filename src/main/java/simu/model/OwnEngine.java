@@ -18,6 +18,7 @@ public class OwnEngine extends Engine {
 
         super(controller);
 
+        // mean service time and standard deviation from that service time +-
         servicePoints = new ServicePoint[5];
         servicePoints[0] = new ServicePoint(new Normal(10, 6), eventlist, EventType.CHECKIN);
         servicePoints[1] = new ServicePoint(new Normal(10, 10), eventlist, EventType.BAGDROP);

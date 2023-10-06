@@ -29,29 +29,18 @@ public class Variables {
     @Column(name = "queue_length")
     private double queueLength; // N
 
-    /**
-     * @param name service point name
-     * @param a    service point arrival count
-     * @param t    simulation total time
-     * @param b    service point busy time
-     * @param u    service point utilization
-     * @param x    throughput (C/T)
-     * @param s    average service time (B/C)
-     * @param w    customers' total waiting time
-     * @param r    average customer through time (W/C)
-     * @param n    average queue length (N = W/T)
-     */
-    public Variables(String name, int a, double t, double b, double u, double x, double s, double w, double r, double n) {
+
+    public Variables(String name, int arrivalCount, double totalTime, double busyTime, double utilization, double throughPut, double avgServiceTime, double waitingTime, double leadTime, double queueLength) {
         this.name = name;
-        this.arrivalCount = a;
-        this.totalTime = t;
-        this.busyTime = b;
-        this.Utilization = u;
-        this.throughPut = x;
-        this.avgServiceTime = s;
-        this.waitingTime = w;
-        this.leadTime = r;
-        this.queueLength = n;
+        this.arrivalCount = arrivalCount;
+        this.totalTime = totalTime;
+        this.busyTime = busyTime;
+        this.Utilization = utilization;
+        this.throughPut = throughPut;
+        this.avgServiceTime = avgServiceTime;
+        this.waitingTime = waitingTime;
+        this.leadTime = leadTime;
+        this.queueLength = queueLength;
     }
 
     public Variables() {

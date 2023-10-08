@@ -21,7 +21,7 @@ public class Visualization implements IVisualization {
     }
 
     public void clearScreen() {
-        gc.setFill(Color.YELLOW);
+        gc.setFill(Color.WHITE);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 

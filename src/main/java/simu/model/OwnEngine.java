@@ -9,24 +9,52 @@ import simu.framework.Engine;
 import simu.framework.Event;
 
 public class OwnEngine extends Engine {
-    private final ArrivalProcess arrivalProcess;
-    private final ServicePoint[] servicePoints;
+    private ArrivalProcess arrivalProcess;
+    private ServicePoint[] servicePoints;
 
-    private int C = 0;      //Counter for customer amount
+    private int arrivalMean = 15;
+    private int arrivalVariance = 5;
+    private int checkInMean = 10;
+    private int checkInVariance = 6;
+    private int bagDropMean = 10;
+    private int bagDropVariance = 10;
+    private int securityMean = 15;
+    private int securityVariance = 6;
+    private int passportMean = 15;
+    private int passportVariance = 10;
+    private int ticketInspectionMean = 15;
+    private int ticketInspectionVariance = 5;
+
+    private int customerCount = 0;
 
     public OwnEngine(IControllerForM controller) {
-
         super(controller);
+        setupServicePoints();
+    }
 
-        // mean service time and standard deviation from that service time +-
+    @Override
+    public void setupServicePoints() {
+        int[] means = {
+                checkInMean, bagDropMean, securityMean, passportMean, ticketInspectionMean
+        };
+
+        int[] variances = {
+                checkInVariance, bagDropVariance, securityVariance, passportVariance, ticketInspectionVariance
+        };
+
+        EventType[] eventTypes = {
+                EventType.CHECKIN, EventType.BAGDROP, EventType.SECURITYCHECK, EventType.PASSPORTCHECK, EventType.TICKETINSPECTION
+        };
+
         servicePoints = new ServicePoint[5];
-        servicePoints[0] = new ServicePoint(new Normal(10, 6), eventlist, EventType.CHECKIN);
-        servicePoints[1] = new ServicePoint(new Normal(10, 10), eventlist, EventType.BAGDROP);
-        servicePoints[2] = new ServicePoint(new Normal(15, 6), eventlist, EventType.SECURITYCHECK);
-        servicePoints[3] = new ServicePoint(new Normal(15, 10), eventlist, EventType.PASSPORTCHECK);
-        servicePoints[4] = new ServicePoint(new Normal(15, 5), eventlist, EventType.TICKETINSPECTION);
 
-        arrivalProcess = new ArrivalProcess(new Negexp(15, 5), eventlist, EventType.ARR1);
+        for (int i = 0; i < 5; i++) {
+            servicePoints[i] = new ServicePoint(new Normal(means[i], variances[i]), eventlist, eventTypes[i]);
+        }
+
+        arrivalProcess = new ArrivalProcess(new Negexp(arrivalMean, arrivalVariance), eventlist, EventType.ARR1);
+
+        System.out.println("Settings applied");
     }
 
     @Override
@@ -35,7 +63,6 @@ public class OwnEngine extends Engine {
         switch ((EventType) e.getType()) {
             case ARR1:
                 customer = new Customer();
-                // customer.setFlyOutOfEurope(customer.willFlyOutOfEurope());
                 servicePoints[0].addToQueue(customer);
                 arrivalProcess.generateNext();
                 controller.visualizeCustomer();
@@ -61,7 +88,7 @@ public class OwnEngine extends Engine {
                 customer.setDepartureTime(Clock.getInstance().getClock());
                 customer.report();
                 controller.visualizeCustomerLeaves();
-                C++;        //add +1 counter for customer
+                customerCount++;
                 break;
         }
     }
@@ -84,7 +111,7 @@ public class OwnEngine extends Engine {
     protected void results() {
         System.out.println("Simulation end at " + Clock.getInstance().getClock());
         System.out.println("Results ... still missing");
-        System.out.println("Total amount of customers that passed into the plane: " + C);
+        System.out.println("Total amount of customers that passed into the plane: " + customerCount);
 
         for (ServicePoint servicePoint : servicePoints) {
             System.out.printf("Utilization of %s is %.2f%%\n", servicePoint, servicePoint.getUtilization());
@@ -94,6 +121,32 @@ public class OwnEngine extends Engine {
 
     @Override
     public int getCustomerCount() {
-        return C;
+        return customerCount;
+    }
+
+    @Override
+    public void setSettings(int[] values) {
+        if (values.length != 12) {
+            throw new IllegalArgumentException("Expected 12 values for settings.");
+        }
+
+        this.arrivalMean = values[0];
+        this.arrivalVariance = values[1];
+        this.checkInMean = values[2];
+        this.checkInVariance = values[3];
+        this.bagDropMean = values[4];
+        this.bagDropVariance = values[5];
+        this.securityMean = values[6];
+        this.securityVariance = values[7];
+        this.passportMean = values[8];
+        this.passportVariance = values[9];
+        this.ticketInspectionMean = values[10];
+        this.ticketInspectionVariance = values[11];
+
+        for (int value : values) {
+            System.out.println(value);
+        }
+
+        setupServicePoints();
     }
 }

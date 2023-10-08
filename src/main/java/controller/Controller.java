@@ -7,7 +7,7 @@ import view.ISimulatorUI;
 
 public class Controller implements IControllerForM, IControllerForV{
 
-    private IEngine engine;
+    private final IEngine engine = new OwnEngine(this);
     private final ISimulatorUI ui;
 
     public Controller(ISimulatorUI ui) {
@@ -16,7 +16,6 @@ public class Controller implements IControllerForM, IControllerForV{
 
     @Override
     public void startSimulation() {
-        engine = new OwnEngine(this);
         engine.setSimulationTime(ui.getTime());
         engine.setDelay(ui.getDelay());
         ui.getVisualization().clearScreen();
@@ -51,5 +50,11 @@ public class Controller implements IControllerForM, IControllerForV{
     @Override
     public int getCustomerCount() {
         return engine.getCustomerCount();
+    }
+
+    @Override
+    public void setSettings(int[] values) {
+
+        engine.setSettings(values);
     }
 }

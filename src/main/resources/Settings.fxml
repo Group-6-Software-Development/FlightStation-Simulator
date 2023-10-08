@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" prefHeight="235.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1"
+      fx:controller="view.SimulatorGUI">
+   <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="160.0"
+         prefWidth="600.0">
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: yellow;">
+         <opaqueInsets>
+            <Insets/>
+         </opaqueInsets>
+         <HBox.margin>
+            <Insets/>
+         </HBox.margin>
+         <Label text="Arrival">
+            <VBox.margin>
+               <Insets left="30.0" top="10.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="13.0"/>
+            </font>
+         </Label>
+         <Label text="Mean">
+            <VBox.margin>
+               <Insets left="34.0" top="15.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </Label>
+         <TextField fx:id="arrivalMean" alignment="CENTER">
+            <VBox.margin>
+               <Insets left="5.0" right="5.0" top="3.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </TextField>
+         <Label text="Variance">
+            <VBox.margin>
+               <Insets left="25.0" top="15.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </Label>
+         <TextField fx:id="arrivalVariance" alignment="CENTER">
+            <VBox.margin>
+               <Insets left="5.0" right="5.0" top="5.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </TextField>
+      </VBox>
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: yellow;">
+         <Label text="Check in">
+            <VBox.margin>
+               <Insets left="23.0" top="10.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="13.0"/>
+            </font>
+         </Label>
+         <Label text="Mean">
+            <VBox.margin>
+               <Insets left="34.0" top="15.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </Label>
+         <TextField fx:id="checkInMean" alignment="CENTER">
+            <VBox.margin>
+               <Insets left="5.0" right="5.0" top="3.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </TextField>
+         <Label text="Variance">
+            <VBox.margin>
+               <Insets left="25.0" top="15.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </Label>
+         <TextField fx:id="checkInVariance" alignment="CENTER">
+            <VBox.margin>
+               <Insets left="5.0" right="5.0" top="5.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </TextField>
+      </VBox>
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: yellow;">
+         <Label contentDisplay="CENTER" text="Bagdrop" textAlignment="CENTER">
+            <VBox.margin>
+               <Insets left="23.0" top="10.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="13.0"/>
+            </font>
+         </Label>
+         <Label text="Mean">
+            <VBox.margin>
+               <Insets left="34.0" top="15.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </Label>
+         <TextField fx:id="bagDropMean" alignment="CENTER">
+            <VBox.margin>
+               <Insets left="5.0" right="5.0" top="3.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </TextField>
+         <Label text="Variance">
+            <VBox.margin>
+               <Insets left="25.0" top="15.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </Label>
+         <TextField fx:id="bagDropVariance" alignment="CENTER">
+            <VBox.margin>
+               <Insets left="5.0" right="5.0" top="5.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </TextField>
+      </VBox>
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: yellow;">
+         <Label text="Security Check">
+            <VBox.margin>
+               <Insets left="5.0" top="10.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="13.0"/>
+            </font>
+         </Label>
+         <Label text="Mean">
+            <VBox.margin>
+               <Insets left="34.0" top="15.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </Label>
+         <TextField fx:id="securityMean" alignment="CENTER">
+            <VBox.margin>
+               <Insets left="5.0" right="5.0" top="3.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </TextField>
+         <Label text="Variance">
+            <VBox.margin>
+               <Insets left="25.0" top="15.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </Label>
+         <TextField fx:id="securityVariance" alignment="CENTER">
+            <VBox.margin>
+               <Insets left="5.0" right="5.0" top="5.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </TextField>
+      </VBox>
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: yellow;">
+         <Label text="Passport check">
+            <VBox.margin>
+               <Insets left="6.0" top="10.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="13.0"/>
+            </font>
+         </Label>
+         <Label text="Mean">
+            <VBox.margin>
+               <Insets left="34.0" top="15.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </Label>
+         <TextField fx:id="passportMean" alignment="CENTER">
+            <VBox.margin>
+               <Insets left="5.0" right="5.0" top="3.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </TextField>
+         <Label text="Variance">
+            <VBox.margin>
+               <Insets left="25.0" top="15.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </Label>
+         <TextField fx:id="passportVariance" alignment="CENTER">
+            <VBox.margin>
+               <Insets left="5.0" right="5.0" top="5.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </TextField>
+      </VBox>
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: yellow;">
+         <Label text="Ticket Inspection">
+            <VBox.margin>
+               <Insets left="1.0" top="10.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </Label>
+         <Label text="Mean">
+            <VBox.margin>
+               <Insets left="34.0" top="15.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </Label>
+         <TextField fx:id="ticketInspectionMean" alignment="CENTER">
+            <VBox.margin>
+               <Insets left="5.0" right="5.0" top="3.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </TextField>
+         <Label text="Variance">
+            <VBox.margin>
+               <Insets left="25.0" top="15.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </Label>
+         <TextField fx:id="ticketInspectionVariance" alignment="CENTER">
+            <VBox.margin>
+               <Insets left="5.0" right="5.0" top="5.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </TextField>
+      </VBox>
+   </HBox>
+   <HBox prefHeight="75.0" prefWidth="600.0">
+      <VBox.margin>
+         <Insets top="10.0"/>
+      </VBox.margin>
+      <Button fx:id="applySettings" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Apply"
+              textAlignment="CENTER">
+         <HBox.margin>
+            <Insets left="123.0" top="25.0"/>
+         </HBox.margin>
+      </Button>
+      <Button fx:id="exitSettings" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Exit"
+              textAlignment="CENTER">
+         <HBox.margin>
+            <Insets left="105.0" top="25.0"/>
+         </HBox.margin>
+      </Button>
+      <Button fx:id="defaultSettings" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+              text="Default" textAlignment="CENTER">
+         <HBox.margin>
+            <Insets left="100.0" top="25.0"/>
+         </HBox.margin>
+      </Button>
+   </HBox>
+</VBox>

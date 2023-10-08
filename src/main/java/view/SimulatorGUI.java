@@ -20,21 +20,13 @@ import java.text.DecimalFormat;
 
 public class SimulatorGUI extends Application implements ISimulatorUI {
     @FXML
+    private TextField arrivalMean, arrivalVariance, checkInMean, checkInVariance, bagDropMean, bagDropVariance, securityMean, securityVariance, passportMean, passportVariance, ticketInspectionMean, ticketInspectionVariance, time, delay;
+    @FXML
+    private Button applySettings, exitSettings, defaultSettings, settingsButton, speedUpButton, slowDownButton, startButton;
+    @FXML
     private Canvas customerCanvas;
     @FXML
-    private Button speedUpButton;
-    @FXML
-    private Button slowDownButton;
-    @FXML
-    private Label customerCount;
-    @FXML
-    private TextField time;
-    @FXML
-    private TextField delay;
-    @FXML
-    private Label result;
-    @FXML
-    private Button startButton;
+    private Label customerCount, result;
 
     private IControllerForV controller;
 
@@ -51,19 +43,23 @@ public class SimulatorGUI extends Application implements ISimulatorUI {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Simulator.fxml"));
         Parent root = loader.load();
 
-        startButton = (Button) loader.getNamespace().get("startButton");
-        speedUpButton = (Button) loader.getNamespace().get("speedUpButton");
-        slowDownButton = (Button) loader.getNamespace().get("slowDownButton");
-        customerCount = (Label) loader.getNamespace().get("customerCount");
         time = (TextField) loader.getNamespace().get("time");
         delay = (TextField) loader.getNamespace().get("delay");
         result = (Label) loader.getNamespace().get("result");
+        startButton = (Button) loader.getNamespace().get("startButton");
+        speedUpButton = (Button) loader.getNamespace().get("speedUpButton");
+        customerCount = (Label) loader.getNamespace().get("customerCount");
+        slowDownButton = (Button) loader.getNamespace().get("slowDownButton");
         customerCanvas = (Canvas) loader.getNamespace().get("customerCanvas");
+        settingsButton = (Button) loader.getNamespace().get("settingsButton");
 
         startButton.setOnAction(event -> {
-            controller.startSimulation();
             startButton.setDisable(true);
+            settingsButton.setDisable(true);
+            controller.startSimulation();
         });
+
+        settingsButton.setOnAction(event -> openSettings());
 
         speedUpButton.setOnAction(e -> controller.speedUp());
         slowDownButton.setOnAction(e -> controller.slowDown());
@@ -102,5 +98,87 @@ public class SimulatorGUI extends Application implements ISimulatorUI {
     @Override
     public IVisualization getVisualization() {
         return display;
+    }
+
+    @Override
+    public void openSettings() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Settings.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Settings");
+            stage.setScene(new Scene(root));
+            stage.setResizable(false);
+            stage.show();
+
+            arrivalMean = (TextField) loader.getNamespace().get("arrivalMean");
+            arrivalVariance = (TextField) loader.getNamespace().get("arrivalVariance");
+            checkInMean = (TextField) loader.getNamespace().get("checkInMean");
+            checkInVariance = (TextField) loader.getNamespace().get("checkInVariance");
+            bagDropMean = (TextField) loader.getNamespace().get("bagDropMean");
+            bagDropVariance = (TextField) loader.getNamespace().get("bagDropVariance");
+            securityMean = (TextField) loader.getNamespace().get("securityMean");
+            securityVariance = (TextField) loader.getNamespace().get("securityVariance");
+            passportMean = (TextField) loader.getNamespace().get("passportMean");
+            passportVariance = (TextField) loader.getNamespace().get("passportVariance");
+            ticketInspectionMean = (TextField) loader.getNamespace().get("ticketInspectionMean");
+            ticketInspectionVariance = (TextField) loader.getNamespace().get("ticketInspectionVariance");
+            applySettings = (Button) loader.getNamespace().get("applySettings");
+            exitSettings = (Button) loader.getNamespace().get("exitSettings");
+            defaultSettings = (Button) loader.getNamespace().get("defaultSettings");
+
+            setDefaultSettings();
+
+            applySettings.setOnAction(e -> {
+                TextField[] textFields = {
+                        this.arrivalMean, this.arrivalVariance,
+                        this.checkInMean, this.checkInVariance,
+                        this.bagDropMean, this.bagDropVariance,
+                        this.securityMean, this.securityVariance,
+                        this.passportMean, this.passportVariance,
+                        this.ticketInspectionMean, this.ticketInspectionVariance
+                };
+
+                int[] values = new int[textFields.length];
+
+                for (int i = 0; i < textFields.length; i++) {
+                    values[i] = Integer.parseInt(textFields[i].getText());
+                }
+
+                controller.setSettings(values);
+
+                applySettings.setStyle("-fx-background-color: green");
+            });
+
+            defaultSettings.setOnAction(e -> {
+                setDefaultSettings();
+                applySettings.setStyle("");
+            });
+
+            exitSettings.setOnAction(e -> {
+                stage.close();
+                applySettings.setStyle("");
+            });
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void setDefaultSettings() {
+        arrivalMean.setText("10");
+        arrivalVariance.setText("5");
+        checkInMean.setText("10");
+        checkInVariance.setText("5");
+        bagDropMean.setText("10");
+        bagDropVariance.setText("5");
+        securityMean.setText("10");
+        securityVariance.setText("5");
+        passportMean.setText("10");
+        passportVariance.setText("5");
+        ticketInspectionMean.setText("10");
+        ticketInspectionVariance.setText("5");
     }
 }

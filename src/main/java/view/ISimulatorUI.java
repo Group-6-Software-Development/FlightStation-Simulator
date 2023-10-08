@@ -8,4 +8,8 @@ public interface ISimulatorUI {
     void setEndTime(double time);
 
     IVisualization getVisualization();
+
+    void openSettings();
+
+    void setDefaultSettings();
 }

@@ -72,5 +72,9 @@ public abstract class Engine extends Thread implements IEngine {
 
     protected abstract void results();
 
+    protected abstract void setupServicePoints();
+
     public abstract int getCustomerCount();
+
+    public abstract void setSettings(int[] values);
 }

@@ -6,4 +6,6 @@ public interface IEngine {
     long getDelay();
 
     int getCustomerCount();
+
+    void setSettings(int[] values);
 }

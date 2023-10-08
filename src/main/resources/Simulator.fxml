@@ -11,21 +11,39 @@
    </padding>
    <Canvas fx:id="customerCanvas" height="285.0" width="600.0" />
    <HBox prefHeight="225.0" prefWidth="598.0">
-      <Button fx:id="startButton" contentDisplay="CENTER" mnemonicParsing="false" text="Start" textAlignment="CENTER">
+      <VBox>
          <HBox.margin>
             <Insets left="25.0" top="39.0" />
          </HBox.margin>
-         <font>
-            <Font name="SansSerif Regular" size="17.0" />
-         </font>
-         <tooltip>
-            <Tooltip text="Start the simulation">
-               <font>
-                  <Font name="SansSerif Regular" size="12.0" />
-               </font>
-            </Tooltip>
-         </tooltip>
-      </Button>
+         <Button fx:id="startButton" contentDisplay="CENTER" mnemonicParsing="false" text="Start"
+                 textAlignment="CENTER">
+            <font>
+               <Font name="SansSerif Regular" size="17.0"/>
+            </font>
+            <tooltip>
+               <Tooltip text="Start the simulation">
+                  <font>
+                     <Font name="SansSerif Regular" size="12.0"/>
+                  </font>
+               </Tooltip>
+            </tooltip>
+         </Button>
+         <Button fx:id="settingsButton" mnemonicParsing="false" text="Settings">
+            <VBox.margin>
+               <Insets left="2.0" top="7.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="11.0"/>
+            </font>
+            <tooltip>
+               <Tooltip text="Change simulator settings">
+                  <font>
+                     <Font name="SansSerif Regular" size="12.0"/>
+                  </font>
+               </Tooltip>
+            </tooltip>
+         </Button>
+      </VBox>
       <VBox prefHeight="200.0" prefWidth="100.0">
          <Button fx:id="speedUpButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Speed up">
             <VBox.margin>
@@ -120,7 +138,7 @@
                   <Font name="SansSerif Regular" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="result" text="temp">
+            <Label fx:id="result">
                <HBox.margin>
                   <Insets left="3.0" top="20.0" />
                </HBox.margin>
@@ -145,7 +163,7 @@
                   <Font name="SansSerif Regular" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="customerCount" text="temp">
+            <Label fx:id="customerCount">
                <HBox.margin>
                   <Insets left="3.0" top="10.0" />
                </HBox.margin>

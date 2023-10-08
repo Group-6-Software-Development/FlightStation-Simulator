@@ -8,4 +8,6 @@ public interface IControllerForV {
         void slowDown();
 
         int getCustomerCount();
+
+        void setSettings(int[] values);
 }

@@ -58,7 +58,7 @@ public class OwnEngine extends Engine {
                 break;
             case TICKETINSPECTION:
                 customer = servicePoints[4].removeFromQueue();
-                customer.setDepartureTime(Clock.getInstance().getClock());
+                customer.setDepartureTime(Clock.getInstance().getTime());
                 customer.report();
                 C++;        //add +1 counter for customer
                 break;
@@ -81,14 +81,14 @@ public class OwnEngine extends Engine {
 
     @Override
     protected void results() {
-        System.out.println("Simulation end at " + Clock.getInstance().getClock());
+        System.out.println("Simulation end at " + Clock.getInstance().getTime());
         System.out.println("Results ... still missing");
         System.out.println("Total amount of customers that passed into the plane: " + C);
 
         for (ServicePoint servicePoint : servicePoints) {
             System.out.printf("Utilization of %s is %.2f%%\n", servicePoint, servicePoint.getUtilization());
         }
-        controller.showEndTime(Clock.getInstance().getClock());
+        controller.showEndTime(Clock.getInstance().getTime());
     }
 
     @Override

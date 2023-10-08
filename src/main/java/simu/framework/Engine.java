@@ -42,7 +42,7 @@ public abstract class Engine extends Thread implements IEngine {
     }
 
     private void runBEvents() {
-        while (eventlist.getNextTime() == clock.getClock()) {
+        while (eventlist.getNextTime() == clock.getTime()) {
             runEvent(eventlist.remove());
         }
     }
@@ -52,7 +52,7 @@ public abstract class Engine extends Thread implements IEngine {
     }
 
     private boolean simulate() {
-        return clock.getClock() < simulationTime;
+        return clock.getTime() < simulationTime;
     }
 
     private void delay() {

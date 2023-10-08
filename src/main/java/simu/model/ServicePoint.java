@@ -34,13 +34,13 @@ public class ServicePoint {
     public void startService() {
         reserved = true;
         double serviceTime = generator.sample();
-        totalBusyTime += (Clock.getInstance().getClock() - lastBusyStartTime);
-        eventList.add(new Event(scheduledEventType, Clock.getInstance().getClock() + serviceTime));
-        lastBusyStartTime = Clock.getInstance().getClock();
+        totalBusyTime += (Clock.getInstance().getTime() - lastBusyStartTime);
+        eventList.add(new Event(scheduledEventType, Clock.getInstance().getTime() + serviceTime));
+        lastBusyStartTime = Clock.getInstance().getTime();
     }
 
     public double getUtilization() {
-        double totalTime = Clock.getInstance().getClock();
+        double totalTime = Clock.getInstance().getTime();
         return (totalBusyTime / totalTime) * 100;
     }
 

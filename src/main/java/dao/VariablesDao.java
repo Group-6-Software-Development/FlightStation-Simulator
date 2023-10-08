@@ -2,13 +2,12 @@ package dao;
 
 import datasource.flightDbConnection;
 import jakarta.persistence.EntityManager;
-import simu.entity.VariablesCalculation;
 import simu.entity.Variables;
 
 public class VariablesDao {
     private final EntityManager em = flightDbConnection.getInstance();
 
-    public void insertVariables(Variables[] variablesArray) {
+    public void persistVariables(Variables[] variablesArray) {
         try {
             em.getTransaction().begin();
             for (Variables variables : variablesArray) {

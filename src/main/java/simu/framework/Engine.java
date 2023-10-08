@@ -1,6 +1,7 @@
 package simu.framework;
 
 import controller.IControllerForM;
+import simu.entity.VariablesCalculation;
 
 public abstract class Engine extends Thread implements IEngine {
     private double simulationTime = 0;
@@ -38,6 +39,7 @@ public abstract class Engine extends Thread implements IEngine {
             runBEvents();
             tryCEvents();
         }
+        VariablesCalculation.setSimulationTotalTime(clock.getTime()); // set the total simulation time
         results();
     }
 

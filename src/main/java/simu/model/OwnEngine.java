@@ -3,6 +3,7 @@ package simu.model;
 import controller.IControllerForM;
 import eduni.distributions.Negexp;
 import eduni.distributions.Normal;
+import simu.entity.VariablesCalculation;
 import simu.framework.ArrivalProcess;
 import simu.framework.Clock;
 import simu.framework.Engine;
@@ -11,7 +12,6 @@ import simu.framework.Event;
 public class OwnEngine extends Engine {
     private final ArrivalProcess arrivalProcess;
     private final ServicePoint[] servicePoints;
-
     private int C = 0;      //Counter for customer amount
 
     public OwnEngine(IControllerForM controller) {
@@ -35,34 +35,48 @@ public class OwnEngine extends Engine {
         switch ((EventType) e.getType()) {
             case ARR1:
                 customer = new Customer();
-                // customer.setFlyOutOfEurope(customer.willFlyOutOfEurope());
                 servicePoints[0].addToQueue(customer);
                 arrivalProcess.generateNext();
                 controller.visualizeCustomer();
                 break;
             case CHECKIN:
-                customer = servicePoints[0].removeFromQueue();
+                VariablesCalculation.servicePointC(EventType.CHECKIN);
+                customer = servicePoints[0].takeFromQueue();
+                customer.setRiEnd(Clock.getInstance().getTime());
+                VariablesCalculation.servicePointRi(customer.getRiStart(), customer.getRiEnd(), EventType.CHECKIN);
                 servicePoints[1].addToQueue(customer);
                 break;
             case BAGDROP:
-                customer = servicePoints[1].removeFromQueue();
+                VariablesCalculation.servicePointC(EventType.BAGDROP);
+                customer = servicePoints[1].takeFromQueue();
+                customer.setRiEnd(Clock.getInstance().getTime());
+                VariablesCalculation.servicePointRi(customer.getRiStart(), customer.getRiEnd(), EventType.BAGDROP);
                 servicePoints[2].addToQueue(customer);
                 break;
             case SECURITYCHECK:
-                customer = servicePoints[2].removeFromQueue();
+                VariablesCalculation.servicePointC(EventType.SECURITYCHECK);
+                customer = servicePoints[2].takeFromQueue();
+                customer.setRiEnd(Clock.getInstance().getTime());
+                VariablesCalculation.servicePointRi(customer.getRiStart(), customer.getRiEnd(), EventType.SECURITYCHECK);
                 servicePoints[3].addToQueue(customer);
                 break;
             case PASSPORTCHECK:
-                customer = servicePoints[3].removeFromQueue();
+                VariablesCalculation.servicePointC(EventType.PASSPORTCHECK);
+                customer = servicePoints[3].takeFromQueue();
+                customer.setRiEnd(Clock.getInstance().getTime());
                 servicePoints[4].addToQueue(customer);
                 break;
             case TICKETINSPECTION:
-                customer = servicePoints[4].removeFromQueue();
+                VariablesCalculation.servicePointC(EventType.TICKETINSPECTION);
+                customer = servicePoints[4].takeFromQueue();
+                customer.setRiEnd(Clock.getInstance().getTime());
+                VariablesCalculation.servicePointRi(customer.getRiStart(), customer.getRiEnd(), EventType.TICKETINSPECTION);
                 customer.setDepartureTime(Clock.getInstance().getTime());
                 customer.report();
                 C++;        //add +1 counter for customer
                 break;
         }
+        VariablesCalculation.setSimulationTotalTime(Clock.getInstance().getTime());
     }
 
     @Override
@@ -84,10 +98,6 @@ public class OwnEngine extends Engine {
         System.out.println("Simulation end at " + Clock.getInstance().getTime());
         System.out.println("Results ... still missing");
         System.out.println("Total amount of customers that passed into the plane: " + C);
-
-        for (ServicePoint servicePoint : servicePoints) {
-            System.out.printf("Utilization of %s is %.2f%%\n", servicePoint, servicePoint.getUtilization());
-        }
         controller.showEndTime(Clock.getInstance().getTime());
     }
 

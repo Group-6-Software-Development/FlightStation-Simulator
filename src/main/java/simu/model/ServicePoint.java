@@ -24,6 +24,9 @@ public class ServicePoint {
     }
 
     public void addToQueue(Customer c) {
+        if( this.customer == null ) { // TODO this probably breaks the visualizer but without Customer is null :/
+            this.customer = new Customer();
+        }
         customer.setRiStart(Clock.getInstance().getTime());
         queue.add(c);
     }

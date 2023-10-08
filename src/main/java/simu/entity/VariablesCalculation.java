@@ -75,22 +75,22 @@ public class VariablesCalculation {
         }
     }
 
-    public static void servicePointRi(double serviceTime, EventType eventType) {
+    public static void servicePointRi(double riEnd, double riStart, EventType eventType) {
         switch (eventType) {
             case CHECKIN:
-                checkInRi.add(serviceTime);
+                checkInRi.add(riEnd - riStart);
                 break;
             case BAGDROP:
-                bagDropRi.add(serviceTime);
+                bagDropRi.add(riEnd - riStart);
                 break;
             case PASSPORTCHECK:
-                passportCheckRi.add(serviceTime);
+                passportCheckRi.add(riEnd - riStart);
                 break;
             case SECURITYCHECK:
-                securityCheckRi.add(serviceTime);
+                securityCheckRi.add(riEnd - riStart);
                 break;
             case TICKETINSPECTION:
-                ticketInspectionRi.add(serviceTime);
+                ticketInspectionRi.add(riEnd - riStart);
                 break;
         }
     }
@@ -169,7 +169,7 @@ public class VariablesCalculation {
         };
     }
 
-    public static double calculateAverageQueueLenght(EventType eventType) { // N
+    public static double calculateAverageQueueLength(EventType eventType) { // N
         return switch (eventType) {
             case CHECKIN -> calculateTotalWaitingTime(EventType.CHECKIN) / simulationTotalTime;
             case BAGDROP -> calculateTotalWaitingTime(EventType.BAGDROP) / simulationTotalTime;
@@ -199,12 +199,13 @@ public class VariablesCalculation {
     }
 
     public static Variables[] getVariablesAsObject() {
-        Variables[] variables = new Variables[5]; // 5 is num of event types
-        variables[0] = new Variables("Check-in", checkInC, simulationTotalTime, checkInB, calculateUtilization(EventType.CHECKIN), calculateThroughput(EventType.CHECKIN), calculateAverageServiceTime(EventType.CHECKIN), calculateTotalWaitingTime(EventType.CHECKIN), calculateResponseTime(EventType.CHECKIN), calculateAverageQueueLenght(EventType.CHECKIN));
-        variables[1] = new Variables("Bag-drop", bagDropC, simulationTotalTime, bagDropB, calculateUtilization(EventType.BAGDROP), calculateThroughput(EventType.BAGDROP), calculateAverageServiceTime(EventType.BAGDROP), calculateTotalWaitingTime(EventType.BAGDROP), calculateResponseTime(EventType.BAGDROP), calculateAverageQueueLenght(EventType.BAGDROP));
-        variables[2] = new Variables("Passport-check", passportCheckC, simulationTotalTime, passportCheckB, calculateUtilization(EventType.PASSPORTCHECK), calculateThroughput(EventType.PASSPORTCHECK), calculateAverageServiceTime(EventType.PASSPORTCHECK), calculateTotalWaitingTime(EventType.PASSPORTCHECK), calculateResponseTime(EventType.PASSPORTCHECK), calculateAverageQueueLenght(EventType.PASSPORTCHECK));
-        variables[3] = new Variables("Security-check", securityCheckC, simulationTotalTime, securityCheckB, calculateUtilization(EventType.SECURITYCHECK), calculateThroughput(EventType.SECURITYCHECK), calculateAverageServiceTime(EventType.SECURITYCHECK), calculateTotalWaitingTime(EventType.SECURITYCHECK), calculateResponseTime(EventType.SECURITYCHECK), calculateAverageQueueLenght(EventType.SECURITYCHECK));
-        variables[4] = new Variables("Ticket-inspection", ticketInspectionC, simulationTotalTime, ticketInspectionB, calculateUtilization(EventType.TICKETINSPECTION), calculateThroughput(EventType.TICKETINSPECTION), calculateAverageServiceTime(EventType.TICKETINSPECTION), calculateTotalWaitingTime(EventType.TICKETINSPECTION), calculateResponseTime(EventType.TICKETINSPECTION), calculateAverageQueueLenght(EventType.TICKETINSPECTION));
+        int NUM_OF_EVENT_TYPES = 5;
+        Variables[] variables = new Variables[NUM_OF_EVENT_TYPES]; // 5 is num of event types
+        variables[0] = new Variables("Check-in", checkInC, simulationTotalTime, checkInB, calculateUtilization(EventType.CHECKIN), calculateThroughput(EventType.CHECKIN), calculateAverageServiceTime(EventType.CHECKIN), calculateTotalWaitingTime(EventType.CHECKIN), calculateResponseTime(EventType.CHECKIN), calculateAverageQueueLength(EventType.CHECKIN));
+        variables[1] = new Variables("Bag-drop", bagDropC, simulationTotalTime, bagDropB, calculateUtilization(EventType.BAGDROP), calculateThroughput(EventType.BAGDROP), calculateAverageServiceTime(EventType.BAGDROP), calculateTotalWaitingTime(EventType.BAGDROP), calculateResponseTime(EventType.BAGDROP), calculateAverageQueueLength(EventType.BAGDROP));
+        variables[2] = new Variables("Passport-check", passportCheckC, simulationTotalTime, passportCheckB, calculateUtilization(EventType.PASSPORTCHECK), calculateThroughput(EventType.PASSPORTCHECK), calculateAverageServiceTime(EventType.PASSPORTCHECK), calculateTotalWaitingTime(EventType.PASSPORTCHECK), calculateResponseTime(EventType.PASSPORTCHECK), calculateAverageQueueLength(EventType.PASSPORTCHECK));
+        variables[3] = new Variables("Security-check", securityCheckC, simulationTotalTime, securityCheckB, calculateUtilization(EventType.SECURITYCHECK), calculateThroughput(EventType.SECURITYCHECK), calculateAverageServiceTime(EventType.SECURITYCHECK), calculateTotalWaitingTime(EventType.SECURITYCHECK), calculateResponseTime(EventType.SECURITYCHECK), calculateAverageQueueLength(EventType.SECURITYCHECK));
+        variables[4] = new Variables("Ticket-inspection", ticketInspectionC, simulationTotalTime, ticketInspectionB, calculateUtilization(EventType.TICKETINSPECTION), calculateThroughput(EventType.TICKETINSPECTION), calculateAverageServiceTime(EventType.TICKETINSPECTION), calculateTotalWaitingTime(EventType.TICKETINSPECTION), calculateResponseTime(EventType.TICKETINSPECTION), calculateAverageQueueLength(EventType.TICKETINSPECTION));
         return variables;
     }
 

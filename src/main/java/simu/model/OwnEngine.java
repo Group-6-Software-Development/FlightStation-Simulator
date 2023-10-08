@@ -40,10 +40,10 @@ public class OwnEngine extends Engine {
                 controller.visualizeCustomer();
                 break;
             case CHECKIN:
-                VariablesCalculation.servicePointC(EventType.CHECKIN);
                 customer = servicePoints[0].takeFromQueue();
                 customer.setRiEnd(Clock.getInstance().getTime());
                 VariablesCalculation.servicePointRi(customer.getRiStart(), customer.getRiEnd(), EventType.CHECKIN);
+                VariablesCalculation.servicePointC(EventType.CHECKIN);
                 servicePoints[1].addToQueue(customer);
                 break;
             case BAGDROP:
@@ -64,19 +64,20 @@ public class OwnEngine extends Engine {
                 VariablesCalculation.servicePointC(EventType.PASSPORTCHECK);
                 customer = servicePoints[3].takeFromQueue();
                 customer.setRiEnd(Clock.getInstance().getTime());
+                VariablesCalculation.servicePointRi(customer.getRiStart(), customer.getRiEnd(), EventType.PASSPORTCHECK);
                 servicePoints[4].addToQueue(customer);
                 break;
             case TICKETINSPECTION:
                 VariablesCalculation.servicePointC(EventType.TICKETINSPECTION);
                 customer = servicePoints[4].takeFromQueue();
                 customer.setRiEnd(Clock.getInstance().getTime());
-                VariablesCalculation.servicePointRi(customer.getRiStart(), customer.getRiEnd(), EventType.TICKETINSPECTION);
+                VariablesCalculation.servicePointRi(customer.getRiEnd(), customer.getRiStart(), EventType.TICKETINSPECTION);
                 customer.setDepartureTime(Clock.getInstance().getTime());
                 customer.report();
                 C++;        //add +1 counter for customer
                 break;
         }
-        VariablesCalculation.setSimulationTotalTime(Clock.getInstance().getTime());
+        VariablesCalculation.setSimulationTotalTime(Clock.getInstance().getTime()); // set the total simulation time
     }
 
     @Override

@@ -18,7 +18,7 @@ public class flightDbConnection {
 
         if (em == null) {
             if (emf == null) {
-                emf = Persistence.createEntityManagerFactory("FlightUnit");
+                emf = Persistence.createEntityManagerFactory("FlightStationMariaDbUnit");
             }
             em = emf.createEntityManager();
         }

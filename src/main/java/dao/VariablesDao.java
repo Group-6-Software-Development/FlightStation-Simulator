@@ -22,7 +22,7 @@ public class VariablesDao {
     }
 
     public List<Variables> getVariablesByServicePointName(String name) {
-        return em.createQuery("SELECT v FROM Variables v WHERE v.name = :servicePointName", Variables.class)
+        return em.createQuery("SELECT name, utilization, arrivalCount, totalTime, busyTime  FROM Variables v WHERE v.name = :servicePointName", Variables.class)
                 .setParameter("servicePointName", name)
                 .getResultList();
     }

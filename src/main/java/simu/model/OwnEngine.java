@@ -69,7 +69,7 @@ public class OwnEngine extends Engine {
                 controller.visualizeCustomer();
                 break;
             case CHECKIN:
-                customer = servicePoints[0].removeFromQueue();
+                customer = servicePoints[0].takeFromQueue();
                 servicePoints[1].addToQueue(customer);
                 break;
             case BAGDROP:
@@ -125,7 +125,7 @@ public class OwnEngine extends Engine {
     protected void results() {
         System.out.println("Simulation end at " + Clock.getInstance().getTime());
         System.out.println("Results ... still missing");
-        System.out.println("Total amount of customers that passed into the plane: " + C);
+        System.out.println("Total amount of customers that passed into the plane: " + customerCount);
         controller.showEndTime(Clock.getInstance().getTime());
     }
 

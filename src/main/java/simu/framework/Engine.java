@@ -1,8 +1,11 @@
 package simu.framework;
 
 import controller.IControllerForM;
+import dao.VariablesDao;
+import simu.entity.VariablesCalculation;
 
 public abstract class Engine extends Thread implements IEngine {
+    private final VariablesDao variablesDao = new VariablesDao();
     private double simulationTime = 0;
     private long delay = 0;
     private final Clock clock;
@@ -38,11 +41,13 @@ public abstract class Engine extends Thread implements IEngine {
             runBEvents();
             tryCEvents();
         }
+        VariablesCalculation.setSimulationTotalTime(clock.getTime()); // set the total simulation time
+        variablesDao.persistVariablesResults(VariablesCalculation.getVariablesAsObject());
         results();
     }
 
     private void runBEvents() {
-        while (eventlist.getNextTime() == clock.getClock()) {
+        while (eventlist.getNextTime() == clock.getTime()) {
             runEvent(eventlist.remove());
         }
     }
@@ -52,7 +57,7 @@ public abstract class Engine extends Thread implements IEngine {
     }
 
     private boolean simulate() {
-        return clock.getClock() < simulationTime;
+        return clock.getTime() < simulationTime;
     }
 
     private void delay() {

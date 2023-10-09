@@ -19,7 +19,7 @@ public class Clock {
         this.time = time;
     }
 
-    public double getClock() {
+    public double getTime() {
         return time;
     }
 }

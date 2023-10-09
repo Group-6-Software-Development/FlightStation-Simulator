@@ -3,6 +3,7 @@ package simu.model;
 import controller.IControllerForM;
 import eduni.distributions.Negexp;
 import eduni.distributions.Normal;
+import simu.entity.VariablesCalculation;
 import simu.framework.ArrivalProcess;
 import simu.framework.Clock;
 import simu.framework.Engine;
@@ -72,25 +73,38 @@ public class OwnEngine extends Engine {
                 servicePoints[1].addToQueue(customer);
                 break;
             case BAGDROP:
-                customer = servicePoints[1].removeFromQueue();
+                VariablesCalculation.servicePointC(EventType.BAGDROP);
+                customer = servicePoints[1].takeFromQueue();
+                customer.setRiStart(Clock.getInstance().getTime());
+                VariablesCalculation.servicePointRi(customer.getRiStart(), customer.getRiEnd(), EventType.BAGDROP);
                 servicePoints[2].addToQueue(customer);
                 break;
             case SECURITYCHECK:
-                customer = servicePoints[2].removeFromQueue();
+                VariablesCalculation.servicePointC(EventType.SECURITYCHECK);
+                customer = servicePoints[2].takeFromQueue();
+                customer.setRiStart(Clock.getInstance().getTime());
+                VariablesCalculation.servicePointRi(customer.getRiStart(), customer.getRiEnd(), EventType.SECURITYCHECK);
                 servicePoints[3].addToQueue(customer);
                 break;
             case PASSPORTCHECK:
-                customer = servicePoints[3].removeFromQueue();
+                VariablesCalculation.servicePointC(EventType.PASSPORTCHECK);
+                customer = servicePoints[3].takeFromQueue();
+                customer.setRiStart(Clock.getInstance().getTime());
+                VariablesCalculation.servicePointRi(customer.getRiStart(), customer.getRiEnd(), EventType.PASSPORTCHECK);
                 servicePoints[4].addToQueue(customer);
                 break;
             case TICKETINSPECTION:
-                customer = servicePoints[4].removeFromQueue();
-                customer.setDepartureTime(Clock.getInstance().getClock());
+                VariablesCalculation.servicePointC(EventType.TICKETINSPECTION);
+                customer = servicePoints[4].takeFromQueue();
+                customer.setRiStart(Clock.getInstance().getTime());
+                VariablesCalculation.servicePointRi(customer.getRiEnd(), customer.getRiStart(), EventType.TICKETINSPECTION);
+                customer.setDepartureTime(Clock.getInstance().getTime());
                 customer.report();
                 controller.visualizeCustomerLeaves();
                 customerCount++;
                 break;
         }
+        VariablesCalculation.setSimulationTotalTime(Clock.getInstance().getTime()); // set the total simulation time
     }
 
     @Override
@@ -109,14 +123,10 @@ public class OwnEngine extends Engine {
 
     @Override
     protected void results() {
-        System.out.println("Simulation end at " + Clock.getInstance().getClock());
+        System.out.println("Simulation end at " + Clock.getInstance().getTime());
         System.out.println("Results ... still missing");
-        System.out.println("Total amount of customers that passed into the plane: " + customerCount);
-
-        for (ServicePoint servicePoint : servicePoints) {
-            System.out.printf("Utilization of %s is %.2f%%\n", servicePoint, servicePoint.getUtilization());
-        }
-        controller.showEndTime(Clock.getInstance().getClock());
+        System.out.println("Total amount of customers that passed into the plane: " + C);
+        controller.showEndTime(Clock.getInstance().getTime());
     }
 
     @Override

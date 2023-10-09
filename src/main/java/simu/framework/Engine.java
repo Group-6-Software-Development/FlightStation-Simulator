@@ -42,7 +42,7 @@ public abstract class Engine extends Thread implements IEngine {
             tryCEvents();
         }
         VariablesCalculation.setSimulationTotalTime(clock.getTime()); // set the total simulation time
-        variablesDao.persistVariables(VariablesCalculation.getVariablesAsObject());
+        variablesDao.persistVariablesResults(VariablesCalculation.getVariablesAsObject());
         results();
     }
 

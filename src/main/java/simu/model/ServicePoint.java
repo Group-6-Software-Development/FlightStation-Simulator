@@ -13,7 +13,6 @@ public class ServicePoint {
     private final ContinuousGenerator generator;
     private final EventList eventList;
     private final EventType scheduledEventType;
-    private Customer customer;
 
     private boolean reserved = false;
 
@@ -24,12 +23,7 @@ public class ServicePoint {
     }
 
     public void addToQueue(Customer c) {
-        if( this.customer == null ) { // TODO this probably breaks the visualizer but without Customer is null :/
-            this.customer = new Customer();
-        } else {
-            this.customer = c;
-        }
-        customer.setRiEnd(Clock.getInstance().getTime());
+        c.setRiEnd(Clock.getInstance().getTime());
         queue.add(c);
     }
 

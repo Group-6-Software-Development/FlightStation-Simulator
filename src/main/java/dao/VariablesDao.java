@@ -21,9 +21,21 @@ public class VariablesDao {
         }
     }
 
+    /**
+     * @param name service point name is to be given to get its variables
+     * @return name, arrivalCount, utilization, totalTime, busyTime, avgServiceTime from database as a list of variables
+     */
     public List<Variables> getVariablesByServicePointName(String name) {
         return em.createQuery("SELECT name, arrivalCount, utilization, totalTime, busyTime, avgServiceTime  FROM Variables v WHERE v.name = :servicePointName", Variables.class)
                 .setParameter("servicePointName", name)
+                .getResultList();
+    }
+
+    /**
+     * @return all variables from database as a list of variables
+     */
+    public List<Variables> getAllVariables() {
+        return em.createQuery("SELECT v FROM Variables v", Variables.class)
                 .getResultList();
     }
 }

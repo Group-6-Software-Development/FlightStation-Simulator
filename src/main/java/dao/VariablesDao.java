@@ -4,10 +4,12 @@ import datasource.flightDbConnection;
 import jakarta.persistence.EntityManager;
 import simu.entity.Variables;
 
+import java.util.List;
+
 public class VariablesDao {
     private final EntityManager em = flightDbConnection.getInstance();
 
-    public void persistVariables(Variables[] variablesArray) {
+    public void persistVariablesResults(Variables[] variablesArray) {
         try {
             em.getTransaction().begin();
             for (Variables variables : variablesArray) {
@@ -17,5 +19,11 @@ public class VariablesDao {
         } catch (Exception e) {
             System.out.printf("Error: %s%n", e.getMessage());
         }
+    }
+
+    public List<Variables> getVariablesByServicePointName(String name) {
+        return em.createQuery("SELECT v FROM Variables v WHERE v.name = :servicePointName", Variables.class)
+                .setParameter("servicePointName", name)
+                .getResultList();
     }
 }

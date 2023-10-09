@@ -22,7 +22,7 @@ public class Variables {
     @Column(name = "busy_time")
     private double busyTime; // B
     @Column(name = "utilization")
-    private double Utilization; // U = B/T
+    private double utilization; // U = B/T
     @Column(name = "through_put")
     private double throughPut; // X = C/T
     @Column(name = "avg_service_time")
@@ -40,7 +40,7 @@ public class Variables {
         this.arrivalCount = arrivalCount;
         this.totalTime = totalTime;
         this.busyTime = busyTime;
-        this.Utilization = utilization;
+        this.utilization = utilization;
         this.throughPut = throughPut;
         this.avgServiceTime = avgServiceTime;
         this.waitingTime = waitingTime;
@@ -93,7 +93,7 @@ public class Variables {
      * @return service point utilization (B/T)
      */
     public double getUtilization() {
-        return Utilization;
+        return utilization;
     }
 
     /**
@@ -142,7 +142,7 @@ public class Variables {
                 ", arrivalCount=" + arrivalCount +
                 ", totalTime=" + totalTime +
                 ", busyTime=" + busyTime +
-                ", Utilization=" + Utilization +
+                ", Utilization=" + utilization +
                 ", throughPut=" + throughPut +
                 ", avgServiceTime=" + avgServiceTime +
                 ", waitingTime=" + waitingTime +

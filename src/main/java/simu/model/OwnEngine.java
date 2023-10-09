@@ -41,7 +41,7 @@ public class OwnEngine extends Engine {
                 break;
             case CHECKIN:
                 customer = servicePoints[0].takeFromQueue();
-                customer.setRiEnd(Clock.getInstance().getTime());
+                customer.setRiStart(Clock.getInstance().getTime());
                 VariablesCalculation.servicePointRi(customer.getRiStart(), customer.getRiEnd(), EventType.CHECKIN);
                 VariablesCalculation.servicePointC(EventType.CHECKIN);
                 servicePoints[1].addToQueue(customer);
@@ -49,28 +49,28 @@ public class OwnEngine extends Engine {
             case BAGDROP:
                 VariablesCalculation.servicePointC(EventType.BAGDROP);
                 customer = servicePoints[1].takeFromQueue();
-                customer.setRiEnd(Clock.getInstance().getTime());
+                customer.setRiStart(Clock.getInstance().getTime());
                 VariablesCalculation.servicePointRi(customer.getRiStart(), customer.getRiEnd(), EventType.BAGDROP);
                 servicePoints[2].addToQueue(customer);
                 break;
             case SECURITYCHECK:
                 VariablesCalculation.servicePointC(EventType.SECURITYCHECK);
                 customer = servicePoints[2].takeFromQueue();
-                customer.setRiEnd(Clock.getInstance().getTime());
+                customer.setRiStart(Clock.getInstance().getTime());
                 VariablesCalculation.servicePointRi(customer.getRiStart(), customer.getRiEnd(), EventType.SECURITYCHECK);
                 servicePoints[3].addToQueue(customer);
                 break;
             case PASSPORTCHECK:
                 VariablesCalculation.servicePointC(EventType.PASSPORTCHECK);
                 customer = servicePoints[3].takeFromQueue();
-                customer.setRiEnd(Clock.getInstance().getTime());
+                customer.setRiStart(Clock.getInstance().getTime());
                 VariablesCalculation.servicePointRi(customer.getRiStart(), customer.getRiEnd(), EventType.PASSPORTCHECK);
                 servicePoints[4].addToQueue(customer);
                 break;
             case TICKETINSPECTION:
                 VariablesCalculation.servicePointC(EventType.TICKETINSPECTION);
                 customer = servicePoints[4].takeFromQueue();
-                customer.setRiEnd(Clock.getInstance().getTime());
+                customer.setRiStart(Clock.getInstance().getTime());
                 VariablesCalculation.servicePointRi(customer.getRiEnd(), customer.getRiStart(), EventType.TICKETINSPECTION);
                 customer.setDepartureTime(Clock.getInstance().getTime());
                 customer.report();

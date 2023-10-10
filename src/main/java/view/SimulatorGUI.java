@@ -130,8 +130,6 @@ public class SimulatorGUI extends Application implements ISimulatorUI {
         speedUpButton.setOnAction(e -> controller.speedUp());
         slowDownButton.setOnAction(e -> controller.slowDown());
 
-        resultsButton.setDisable(true);
-
         resultsButton.setOnAction(e -> {
             openResults();
             controller.getResults();
@@ -166,8 +164,6 @@ public class SimulatorGUI extends Application implements ISimulatorUI {
         this.result.setText(decimalFormat.format(time));
         int totalCustomerCount = controller.getCustomerCount();
         customerCount.setText(String.valueOf(totalCustomerCount));
-
-        resultsButton.setDisable(false);
     }
 
     @Override

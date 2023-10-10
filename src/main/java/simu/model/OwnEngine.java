@@ -69,7 +69,10 @@ public class OwnEngine extends Engine {
                 controller.visualizeCustomer();
                 break;
             case CHECKIN:
+                VariablesCalculation.servicePointC(EventType.CHECKIN);
                 customer = servicePoints[0].takeFromQueue();
+                customer.setRiStart(Clock.getInstance().getTime());
+                VariablesCalculation.servicePointRi(customer.getRiStart(), customer.getRiEnd(), EventType.CHECKIN);
                 servicePoints[1].addToQueue(customer);
                 break;
             case BAGDROP:
@@ -97,7 +100,7 @@ public class OwnEngine extends Engine {
                 VariablesCalculation.servicePointC(EventType.TICKETINSPECTION);
                 customer = servicePoints[4].takeFromQueue();
                 customer.setRiStart(Clock.getInstance().getTime());
-                VariablesCalculation.servicePointRi(customer.getRiEnd(), customer.getRiStart(), EventType.TICKETINSPECTION);
+                VariablesCalculation.servicePointRi(customer.getRiStart(), customer.getRiEnd(), EventType.TICKETINSPECTION);
                 customer.setDepartureTime(Clock.getInstance().getTime());
                 customer.report();
                 controller.visualizeCustomerLeaves();

@@ -4,6 +4,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+/**
+ * This class is responsible for the visualization of the simulation.
+ */
 public class Visualization implements IVisualization {
     private final GraphicsContext gc;
     private final Canvas canvas;
@@ -14,17 +17,28 @@ public class Visualization implements IVisualization {
     double x = 0;
     double y = 0;
 
+    /**
+     * Constructor for the Visualization class.
+     *
+     * @param canvas The canvas on which the visualization will be drawn.
+     */
     public Visualization(Canvas canvas) {
         this.canvas = canvas;
         gc = canvas.getGraphicsContext2D();
         clearScreen();
     }
 
+    /**
+     * Clears the canvas.
+     */
     public void clearScreen() {
         gc.setFill(Color.WHITE);
         gc.fillRect(0, 0, canvas.getWidth(), canvas.getHeight());
     }
 
+    /**
+     * Draws a red circle representing a new customer that has entered the system.
+     */
     public void newCustomer() {
         gc.setFill(Color.RED);
         gc.fillOval(i, j, 10, 10);
@@ -33,6 +47,9 @@ public class Visualization implements IVisualization {
         if (i == 0) j += 10;
     }
 
+    /**
+     * Draws a green circle representing a customer that has left the system.
+     */
     public void customerLeaves() {
         gc.setFill(Color.GREEN);
         gc.fillOval(x, y, 10, 10);

@@ -21,6 +21,10 @@ import simu.framework.Trace.Level;
 import java.text.DecimalFormat;
 import java.util.List;
 
+/**
+ * This class is the GUI for the simulator.
+ * It implements the ISimulatorUI interface.
+ */
 public class SimulatorGUI extends Application implements ISimulatorUI {
     @FXML
     private TableView<Variables> tableView;
@@ -97,12 +101,21 @@ public class SimulatorGUI extends Application implements ISimulatorUI {
 
     private IVisualization display;
 
+    /**
+     * This method is called when the application is started.
+     * It initializes the controller.
+     * It sets the trace level to INFO.
+     */
     @Override
     public void init() {
         Trace.setTraceLevel(Level.INFO);
         controller = new Controller(this);
     }
 
+    /**
+     * This method is called when the application is started.
+     * It loads the main simulator GUI.
+     */
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/FXML-Files/Simulator.fxml"));
@@ -148,16 +161,27 @@ public class SimulatorGUI extends Application implements ISimulatorUI {
         });
     }
 
+    /**
+     * @return the time from the GUI.
+     */
     @Override
     public double getTime() {
         return Double.parseDouble(time.getText());
     }
 
+    /**
+     * @return the delay from the GUI.
+     */
     @Override
     public long getDelay() {
         return Long.parseLong(delay.getText());
     }
 
+    /**
+     * This method is used to show the end time and the total customer count in the GUI once the simulation is finished.
+     *
+     * @param time the end time of the simulation.
+     */
     @Override
     public void setEndTime(double time) {
         DecimalFormat decimalFormat = new DecimalFormat("#0.00");
@@ -166,11 +190,17 @@ public class SimulatorGUI extends Application implements ISimulatorUI {
         customerCount.setText(String.valueOf(totalCustomerCount));
     }
 
+    /**
+     * @return the display.
+     */
     @Override
     public IVisualization getVisualization() {
         return display;
     }
 
+    /**
+     * This method is used to open the settings GUI.
+     */
     @Override
     public void openSettings() {
         try {
@@ -227,6 +257,9 @@ public class SimulatorGUI extends Application implements ISimulatorUI {
         }
     }
 
+    /**
+     * This method is used to open the results GUI.
+     */
     @Override
     public void openResults() {
         try {
@@ -275,6 +308,9 @@ public class SimulatorGUI extends Application implements ISimulatorUI {
         }
     }
 
+    /**
+     * This method is used to set the default settings in the settings GUI.
+     */
     @Override
     public void setDefaultSettings() {
         arrivalMean.setText("15");
@@ -296,6 +332,9 @@ public class SimulatorGUI extends Application implements ISimulatorUI {
         ticketInspectionVariance.setText("5");
     }
 
+    /**
+     * This method is used to apply the settings in the settings GUI.
+     */
     @Override
     public void applySettings() {
         TextField[] textFields = {

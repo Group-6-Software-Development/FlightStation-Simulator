@@ -131,29 +131,19 @@ public class SimulatorGUI extends Application implements ISimulatorUI {
             setDefaultSettings();
 
             applySettings.setOnAction(e -> {
-                TextField[] textFields = {
-                        this.arrivalMean, this.arrivalVariance,
-                        this.checkInMean, this.checkInVariance,
-                        this.bagDropMean, this.bagDropVariance,
-                        this.securityMean, this.securityVariance,
-                        this.passportMean, this.passportVariance,
-                        this.ticketInspectionMean, this.ticketInspectionVariance
-                };
-
-                int[] values = new int[textFields.length];
-
-                for (int i = 0; i < textFields.length; i++) {
-                    values[i] = Integer.parseInt(textFields[i].getText());
-                }
-
-                controller.setSettings(values);
+                applySettings();
 
                 applySettings.setStyle("-fx-background-color: green");
+                root.setOnMouseMoved(event -> applySettings.setStyle(""));
             });
 
             defaultSettings.setOnAction(e -> {
                 setDefaultSettings();
+                applySettings();
+
                 applySettings.setStyle("");
+                applySettings.setStyle("-fx-background-color: green");
+                root.setOnMouseMoved(event -> applySettings.setStyle(""));
             });
 
             exitSettings.setOnAction(e -> {
@@ -168,17 +158,42 @@ public class SimulatorGUI extends Application implements ISimulatorUI {
 
     @Override
     public void setDefaultSettings() {
-        arrivalMean.setText("10");
+        arrivalMean.setText("15");
         arrivalVariance.setText("5");
+
         checkInMean.setText("10");
-        checkInVariance.setText("5");
+        checkInVariance.setText("6");
+
         bagDropMean.setText("10");
-        bagDropVariance.setText("5");
-        securityMean.setText("10");
-        securityVariance.setText("5");
-        passportMean.setText("10");
-        passportVariance.setText("5");
-        ticketInspectionMean.setText("10");
+        bagDropVariance.setText("10");
+
+        securityMean.setText("15");
+        securityVariance.setText("6");
+
+        passportMean.setText("15");
+        passportVariance.setText("10");
+
+        ticketInspectionMean.setText("15");
         ticketInspectionVariance.setText("5");
+    }
+
+    @Override
+    public void applySettings() {
+        TextField[] textFields = {
+                this.arrivalMean, this.arrivalVariance,
+                this.checkInMean, this.checkInVariance,
+                this.bagDropMean, this.bagDropVariance,
+                this.securityMean, this.securityVariance,
+                this.passportMean, this.passportVariance,
+                this.ticketInspectionMean, this.ticketInspectionVariance
+        };
+
+        int[] values = new int[textFields.length];
+
+        for (int i = 0; i < textFields.length; i++) {
+            values[i] = Integer.parseInt(textFields[i].getText());
+        }
+
+        controller.setSettings(values);
     }
 }

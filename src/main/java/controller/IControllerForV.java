@@ -1,5 +1,9 @@
 package controller;
 
+import simu.entity.Variables;
+
+import java.util.List;
+
 public interface IControllerForV {
         void startSimulation();
 
@@ -10,4 +14,6 @@ public interface IControllerForV {
         int getCustomerCount();
 
         void setSettings(int[] values);
+
+        List<Variables> getResults();
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<TableView xmlns:fx="http://javafx.com/fxml/1" fx:id="tableView" maxHeight="-Infinity" maxWidth="-Infinity"
+           minHeight="-Infinity"
+           minWidth="-Infinity" prefHeight="400.0" prefWidth="908.0"
+           xmlns="http://javafx.com/javafx/20.0.1" fx:controller="view.SimulatorGUI">
+   <columns>
+      <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name"/>
+      <TableColumn fx:id="avgServiceTimeColumn" prefWidth="136.0" text="Avg Service Time"/>
+      <TableColumn fx:id="busyTimeColumn" prefWidth="81.0" text="Busy Time"/>
+      <TableColumn fx:id="customerCountColumn" prefWidth="108.0" text="Customer Count"/>
+      <TableColumn fx:id="leadTimeColumn" prefWidth="75.0" text="Lead Time"/>
+      <TableColumn fx:id="queueLengthColumn" prefWidth="100.0" text="Queue Length"/>
+      <TableColumn fx:id="throughPutColumn" prefWidth="84.0" text="Throughput"/>
+      <TableColumn fx:id="totalTimeColumn" prefWidth="75.0" text="Total Time"/>
+      <TableColumn fx:id="utilizationColumn" prefWidth="75.0" text="Utilization"/>
+      <TableColumn fx:id="waitingTimeColumn" prefWidth="98.0" text="Waiting Time"/>
+   </columns>
+   <columnResizePolicy>
+      <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+   </columnResizePolicy>
+</TableView>

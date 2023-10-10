@@ -13,7 +13,7 @@
    <HBox prefHeight="225.0" prefWidth="598.0">
       <VBox>
          <HBox.margin>
-            <Insets left="25.0" top="39.0" />
+            <Insets left="20.0" right="5.0"/>
          </HBox.margin>
          <Button fx:id="startButton" contentDisplay="CENTER" mnemonicParsing="false" text="Start"
                  textAlignment="CENTER">
@@ -27,10 +27,13 @@
                   </font>
                </Tooltip>
             </tooltip>
+            <VBox.margin>
+               <Insets top="19.0"/>
+            </VBox.margin>
          </Button>
          <Button fx:id="settingsButton" mnemonicParsing="false" text="Settings">
             <VBox.margin>
-               <Insets left="2.0" top="7.0"/>
+               <Insets left="2.0" top="14.0"/>
             </VBox.margin>
             <font>
                <Font name="SansSerif Regular" size="11.0"/>
@@ -129,10 +132,10 @@
          </HBox>
       </VBox>
       <VBox prefHeight="108.0" prefWidth="216.0">
-         <HBox prefHeight="100.0" prefWidth="200.0">
+         <HBox prefHeight="20.0" prefWidth="216.0">
             <Label text="Total time:">
                <HBox.margin>
-                  <Insets left="8.0" top="20.0" />
+                  <Insets left="8.0"/>
                </HBox.margin>
                <font>
                   <Font name="SansSerif Regular" size="15.0" />
@@ -140,7 +143,7 @@
             </Label>
             <Label fx:id="result">
                <HBox.margin>
-                  <Insets left="3.0" top="20.0" />
+                  <Insets left="3.0"/>
                </HBox.margin>
                <font>
                   <Font name="SansSerif Regular" size="15.0" />
@@ -153,11 +156,14 @@
                   </Tooltip>
                </tooltip>
             </Label>
+            <VBox.margin>
+               <Insets bottom="5.0" left="5.0" right="5.0" top="10.0"/>
+            </VBox.margin>
          </HBox>
-         <HBox prefHeight="100.0" prefWidth="200.0">
+         <HBox prefHeight="20.0" prefWidth="216.0">
             <Label text="Customer count:">
                <HBox.margin>
-                  <Insets left="8.0" top="10.0" />
+                  <Insets left="8.0"/>
                </HBox.margin>
                <font>
                   <Font name="SansSerif Regular" size="15.0" />
@@ -165,7 +171,7 @@
             </Label>
             <Label fx:id="customerCount">
                <HBox.margin>
-                  <Insets left="3.0" top="10.0" />
+                  <Insets left="3.0"/>
                </HBox.margin>
                <font>
                   <Font name="SansSerif Regular" size="15.0" />
@@ -178,7 +184,21 @@
                   </Tooltip>
                </tooltip>
             </Label>
+            <VBox.margin>
+               <Insets bottom="5.0" left="5.0" right="5.0" top="10.0"/>
+            </VBox.margin>
          </HBox>
+         <Button fx:id="resultsButton" mnemonicParsing="false" text="Results">
+            <VBox.margin>
+               <Insets left="75.0" top="7.0"/>
+            </VBox.margin>
+            <font>
+               <Font name="SansSerif Regular" size="12.0"/>
+            </font>
+         </Button>
+         <HBox.margin>
+            <Insets/>
+         </HBox.margin>
       </VBox>
    </HBox>
 </SplitPane>

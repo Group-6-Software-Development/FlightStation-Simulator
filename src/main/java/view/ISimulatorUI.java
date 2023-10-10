@@ -14,4 +14,6 @@ public interface ISimulatorUI {
     void setDefaultSettings();
 
     void applySettings();
+
+    void openResults();
 }

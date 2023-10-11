@@ -106,7 +106,6 @@ public class VariablesCalculation {
         };
     }
 
-
     public static double calculateUtilization(EventType eventType) { // U
         return switch (eventType) {
             case CHECKIN -> checkInB / simulationTotalTime;
@@ -208,5 +207,4 @@ public class VariablesCalculation {
         variables[4] = new Variables("Ticket-inspection", ticketInspectionC, simulationTotalTime, ticketInspectionB, calculateUtilization(EventType.TICKETINSPECTION), calculateThroughput(EventType.TICKETINSPECTION), calculateAverageServiceTime(EventType.TICKETINSPECTION), calculateTotalWaitingTime(EventType.TICKETINSPECTION), calculateResponseTime(EventType.TICKETINSPECTION), calculateAverageQueueLength(EventType.TICKETINSPECTION));
         return variables;
     }
-
 }

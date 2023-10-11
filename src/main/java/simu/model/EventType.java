@@ -3,7 +3,7 @@ package simu.model;
 import simu.framework.IEventType;
 
 public enum EventType implements IEventType{
-    ARR1, CHECKIN, BAGDROP, SECURITYCHECK, RANDOMINSPECTION, PASSPORTCHECK, TICKETINSPECTION;
+    ARR1, CHECKIN, BAGDROP, SECURITYCHECK, PASSPORTCHECK, TICKETINSPECTION;
 
 
     /**
@@ -17,7 +17,6 @@ public enum EventType implements IEventType{
             case CHECKIN -> "CHECK-IN";
             case BAGDROP -> "BAG-DROP";
             case SECURITYCHECK -> "SECURITY CHECK";
-            case RANDOMINSPECTION -> "RANDOM INSPECTION";
             case PASSPORTCHECK -> "PASSPORT CHECK";
             case TICKETINSPECTION -> "TICKET INSPECTION";
         };

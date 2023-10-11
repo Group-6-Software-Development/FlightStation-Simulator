@@ -127,7 +127,6 @@ public class OwnEngine extends Engine {
     @Override
     protected void results() {
         System.out.println("Simulation end at " + Clock.getInstance().getTime());
-        System.out.println("Results ... still missing");
         System.out.println("Total amount of customers that passed into the plane: " + customerCount);
         controller.showEndTime(Clock.getInstance().getTime());
     }
@@ -139,10 +138,6 @@ public class OwnEngine extends Engine {
 
     @Override
     public void setSettings(int[] values) {
-        if (values.length != 12) {
-            throw new IllegalArgumentException("Expected 12 values for settings.");
-        }
-
         this.arrivalMean = values[0];
         this.arrivalVariance = values[1];
         this.checkInMean = values[2];

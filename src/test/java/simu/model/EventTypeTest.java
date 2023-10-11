@@ -13,7 +13,6 @@ class EventTypeTest {
         assertEquals("CHECK-IN", EventType.getEventName(EventType.CHECKIN));
         assertEquals("BAG-DROP", EventType.getEventName(EventType.BAGDROP));
         assertEquals("SECURITY CHECK", EventType.getEventName(EventType.SECURITYCHECK));
-        assertEquals("RANDOM INSPECTION", EventType.getEventName(EventType.RANDOMINSPECTION));
         assertEquals("PASSPORT CHECK", EventType.getEventName(EventType.PASSPORTCHECK));
         assertEquals("TICKET INSPECTION", EventType.getEventName(EventType.TICKETINSPECTION));
     }

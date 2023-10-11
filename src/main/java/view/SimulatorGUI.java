@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import simu.entity.Variables;
 import simu.framework.Trace;
@@ -132,10 +133,32 @@ public class SimulatorGUI extends Application implements ISimulatorUI {
         customerCanvas = (Canvas) loader.getNamespace().get("customerCanvas");
         settingsButton = (Button) loader.getNamespace().get("settingsButton");
 
+        time.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            String character = event.getCharacter();
+            if (!character.matches("[0-9]")) {
+                event.consume();
+            }
+        });
+
+        delay.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            String character = event.getCharacter();
+            if (!character.matches("[0-9]")) {
+                event.consume();
+            }
+        });
+
         startButton.setOnAction(event -> {
-            startButton.setDisable(true);
-            settingsButton.setDisable(true);
-            controller.startSimulation();
+            if (time.getText().isEmpty() || delay.getText().isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Error");
+                alert.setContentText("Please enter a time and a delay.");
+                alert.showAndWait();
+            } else {
+                startButton.setDisable(true);
+                settingsButton.setDisable(true);
+                controller.startSimulation();
+            }
         });
 
         settingsButton.setOnAction(event -> openSettings());
@@ -229,9 +252,42 @@ public class SimulatorGUI extends Application implements ISimulatorUI {
             exitSettings = (Button) loader.getNamespace().get("exitSettings");
             defaultSettings = (Button) loader.getNamespace().get("defaultSettings");
 
+            TextField[] textFields = new TextField[]{
+                    arrivalMean, arrivalVariance, checkInMean, checkInVariance, bagDropMean, bagDropVariance,
+                    securityMean, securityVariance, passportMean, passportVariance,
+                    ticketInspectionMean, ticketInspectionVariance
+            };
+
+            for (TextField textField : textFields) {
+                textField.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+                    String character = event.getCharacter();
+                    if (!character.matches("[0-9]")) {
+                        event.consume();
+                    }
+                });
+            }
+
             setDefaultSettings();
 
             applySettings.setOnAction(e -> {
+                for (TextField textField : textFields) {
+                    if (textField.getText().isEmpty()) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setHeaderText("Error");
+                        alert.setContentText("Please enter a value for all fields.");
+                        alert.showAndWait();
+                        return;
+                    } else if (textField.getText().startsWith("0")) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Error");
+                        alert.setHeaderText("Error");
+                        alert.setContentText("Please enter a value greater than 0 for all fields.");
+                        alert.showAndWait();
+                        return;
+                    }
+                }
+
                 applySettings();
 
                 applySettings.setStyle("-fx-background-color: green");

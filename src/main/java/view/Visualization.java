@@ -8,13 +8,31 @@ import javafx.scene.paint.Color;
  * This class is responsible for the visualization of the simulation.
  */
 public class Visualization implements IVisualization {
+    /**
+     * The GraphicsContext object used to draw on the canvas.
+     */
     private final GraphicsContext gc;
+    /**
+     * The canvas on which the visualization will be drawn.
+     */
     private final Canvas canvas;
 
+    /**
+     * The coordinates of the next new customer.
+     */
     double i = 0;
+    /**
+     * The coordinates of the next customer that leaves the system.
+     */
     double j = 0;
 
+    /**
+     * The coordinates of the next customer that leaves the system.
+     */
     double x = 0;
+    /**
+     * The coordinates of the next customer that leaves the system.
+     */
     double y = 0;
 
     /**

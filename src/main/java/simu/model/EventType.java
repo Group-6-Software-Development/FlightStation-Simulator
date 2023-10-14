@@ -2,9 +2,11 @@ package simu.model;
 
 import simu.framework.IEventType;
 
+/**
+ * Enum for the different EventTypes
+ */
 public enum EventType implements IEventType{
     ARR1, CHECKIN, BAGDROP, SECURITYCHECK, PASSPORTCHECK, TICKETINSPECTION;
-
 
     /**
      * Returns the name of the EventType as a String

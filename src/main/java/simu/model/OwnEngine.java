@@ -9,6 +9,9 @@ import simu.framework.Clock;
 import simu.framework.Engine;
 import simu.framework.Event;
 
+/**
+ * This class is the engine of the simulation. It extends the Engine class from the framework.
+ */
 public class OwnEngine extends Engine {
     private ArrivalProcess arrivalProcess;
     private ServicePoint[] servicePoints;
@@ -28,11 +31,19 @@ public class OwnEngine extends Engine {
 
     private int customerCount = 0;
 
+    /**
+     * Constructor of the OwnEngine class
+     *
+     * @param controller the controller of the simulation
+     */
     public OwnEngine(IControllerForM controller) {
         super(controller);
         setupServicePoints();
     }
 
+    /**
+     * This method sets up the service points of the simulation
+     */
     @Override
     public void setupServicePoints() {
         int[] means = {
@@ -58,6 +69,11 @@ public class OwnEngine extends Engine {
         System.out.println("Settings applied");
     }
 
+    /**
+     * This method runs the event
+     *
+     * @param e the event that is run
+     */
     @Override
     protected void runEvent(Event e) {
         Customer customer;
@@ -110,11 +126,17 @@ public class OwnEngine extends Engine {
         VariablesCalculation.setSimulationTotalTime(Clock.getInstance().getTime()); // set the total simulation time
     }
 
+    /**
+     * This method initializes the simulation
+     */
     @Override
     protected void init() {
         arrivalProcess.generateNext();
     }
 
+    /**
+     * This method tries to start the service of the service points
+     */
     @Override
     protected void tryCEvents() {
         for (ServicePoint servicePoint : servicePoints) {
@@ -124,6 +146,9 @@ public class OwnEngine extends Engine {
         }
     }
 
+    /**
+     * This method prints the results of the simulation
+     */
     @Override
     protected void results() {
         System.out.println("Simulation end at " + Clock.getInstance().getTime());
@@ -131,11 +156,19 @@ public class OwnEngine extends Engine {
         controller.showEndTime(Clock.getInstance().getTime());
     }
 
+    /**
+     * This method returns the amount of customers that passed into the plane
+     * @return the amount of customers that passed into the plane
+     */
     @Override
     public int getCustomerCount() {
         return customerCount;
     }
 
+    /**
+     * This method sets the settings of the simulation
+     * @param values the values of the settings
+     */
     @Override
     public void setSettings(int[] values) {
         this.arrivalMean = values[0];

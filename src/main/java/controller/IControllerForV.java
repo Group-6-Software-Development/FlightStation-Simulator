@@ -4,6 +4,9 @@ import simu.entity.Variables;
 
 import java.util.List;
 
+/**
+ * Interface for the controller of the view.
+ */
 public interface IControllerForV {
         /**
          * Starts the simulation.

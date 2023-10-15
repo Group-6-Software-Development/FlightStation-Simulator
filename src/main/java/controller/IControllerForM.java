@@ -1,5 +1,8 @@
 package controller;
 
+/**
+ * Interface for the controller of the model.
+ */
 public interface IControllerForM {
     /**
      * Shows the end time of the simulation.

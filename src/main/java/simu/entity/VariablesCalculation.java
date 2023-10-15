@@ -5,6 +5,10 @@ import simu.model.EventType;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * VariablesCalculation class
+ * this class is used to calculate variables
+ */
 public class VariablesCalculation {
     private static int checkInC; // checkIn variable C
     private static int bagDropC; // bagDrop variable C
@@ -75,6 +79,13 @@ public class VariablesCalculation {
         }
     }
 
+    /**
+     * save Ri
+     *
+     * @param riEnd     end time
+     * @param riStart   start time
+     * @param eventType event type
+     */
     public static void servicePointRi(double riEnd, double riStart, EventType eventType) {
         switch (eventType) {
             case CHECKIN:
@@ -95,6 +106,11 @@ public class VariablesCalculation {
         }
     }
 
+    /**
+     * get Ri list
+     * @param eventType event type
+     * @return Ri list
+     */
     public static List<Double> getRiList(EventType eventType) {
         return switch (eventType) {
             case CHECKIN -> checkInRi;
@@ -106,6 +122,11 @@ public class VariablesCalculation {
         };
     }
 
+    /**
+     * calculate utilization
+     * @param eventType event type
+     * @return utilization
+     */
     public static double calculateUtilization(EventType eventType) { // U
         return switch (eventType) {
             case CHECKIN -> checkInB / simulationTotalTime;
@@ -117,6 +138,11 @@ public class VariablesCalculation {
         };
     }
 
+    /**
+     * calculate throughput
+     * @param eventType event type
+     * @return throughput
+     */
     public static double calculateThroughput(EventType eventType) { // X
         return switch (eventType) {
             case CHECKIN -> checkInC / simulationTotalTime;
@@ -128,6 +154,11 @@ public class VariablesCalculation {
         };
     }
 
+    /**
+     * calculate average service time
+     * @param eventType event type
+     * @return average service time
+     */
     public static double calculateAverageServiceTime(EventType eventType) { // S
         return switch (eventType) {
             case CHECKIN -> checkInB / checkInC;
@@ -139,6 +170,11 @@ public class VariablesCalculation {
         };
     }
 
+    /**
+     * calculate total waiting time
+     * @param eventType event type
+     * @return total waiting time
+     */
     public static double calculateTotalWaitingTime(EventType eventType) { // W
         double waitingTime = 0;
         List<Double> selectedRiList = switch (eventType) {
@@ -157,6 +193,11 @@ public class VariablesCalculation {
         return waitingTime;
     }
 
+    /**
+     * calculate response time
+     * @param eventType event type
+     * @return response time
+     */
     public static double calculateResponseTime(EventType eventType) { // R
         return switch (eventType) {
             case CHECKIN -> calculateTotalWaitingTime(EventType.CHECKIN) / checkInC;
@@ -168,6 +209,11 @@ public class VariablesCalculation {
         };
     }
 
+    /**
+     * calculate average queue length
+     * @param eventType event type
+     * @return average queue length
+     */
     public static double calculateAverageQueueLength(EventType eventType) { // N
         return switch (eventType) {
             case CHECKIN -> calculateTotalWaitingTime(EventType.CHECKIN) / simulationTotalTime;
@@ -179,24 +225,10 @@ public class VariablesCalculation {
         };
     }
 
-    public static void reset() {
-        checkInC = 0;
-        bagDropC = 0;
-        passportCheckC = 0;
-        securityCheckC = 0;
-        ticketInspectionC = 0;
-        checkInB = 0;
-        bagDropB = 0;
-        passportCheckB = 0;
-        securityCheckB = 0;
-        ticketInspectionB = 0;
-        checkInRi.clear();
-        bagDropRi.clear();
-        passportCheckRi.clear();
-        securityCheckRi.clear();
-        ticketInspectionRi.clear();
-    }
-
+    /**
+     * get variables as object
+     * @return variables as object
+     */
     public static Variables[] getVariablesAsObject() {
         int NUM_OF_EVENT_TYPES = 5;
         Variables[] variables = new Variables[NUM_OF_EVENT_TYPES]; // 5 is num of event types

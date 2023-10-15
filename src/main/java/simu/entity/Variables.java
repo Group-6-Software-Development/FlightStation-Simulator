@@ -1,12 +1,10 @@
 package simu.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Column;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.*;
 
+/**
+ * Variables entity class
+ */
 @Entity
 @Table(name = "variables")
 public class Variables {
@@ -35,6 +33,20 @@ public class Variables {
     private double queueLength; // N
 
 
+    /**
+     * Constructor for Variables
+     *
+     * @param name           service point name
+     * @param arrivalCount   service point arrival count
+     * @param totalTime      simulation total time
+     * @param busyTime       service point busy time
+     * @param utilization    service point utilization (B/T)
+     * @param throughPut     throughput (C/T)
+     * @param avgServiceTime average service time (B/C)
+     * @param waitingTime    customers' total waiting time
+     * @param leadTime       average customer through time (W/C)
+     * @param queueLength    average queue length (N = W/T)
+     */
     public Variables(String name, int arrivalCount, double totalTime, double busyTime, double utilization, double throughPut, double avgServiceTime, double waitingTime, double leadTime, double queueLength) {
         this.name = name;
         this.arrivalCount = arrivalCount;
@@ -48,6 +60,9 @@ public class Variables {
         this.queueLength = queueLength;
     }
 
+    /**
+     * Constructor for Variables
+     */
     public Variables() {
     }
 
@@ -134,6 +149,11 @@ public class Variables {
     }
 
 
+    /**
+     * Returns a string representation of the object.
+     *
+     * @return a string representation of the object.
+     */
     @Override
     public String toString() {
         return "Variables{" +

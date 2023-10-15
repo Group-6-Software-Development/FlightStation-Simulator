@@ -6,9 +6,17 @@ import simu.entity.Variables;
 
 import java.util.List;
 
+/**
+ * This class is used to persist variables to database and get variables from database
+ */
 public class VariablesDao {
     private final EntityManager em = flightDbConnection.getInstance();
 
+    /**
+     * Persist variables to database
+     *
+     * @param variablesArray variables array to be persisted to database
+     */
     public void persistVariablesResults(Variables[] variablesArray) {
         try {
             em.getTransaction().begin();
